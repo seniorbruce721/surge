@@ -228,4 +228,4 @@ zhihuX = type=http-response,pattern=^https://www\.zhihu\.com/(question|topic),re
 
 [MITM]
 skip-server-cert-verify = true
-hostname = %APPEND% wq.jd.com, draw.jdfcloud.com, jdjoy.jd.com, account.huami.com, wq.jd.com, me-api.jd.com, *.video.qq.com, as.xiaojukeji.com, common.diditaxi.com.cn, api.m.jd.com, shopmember.m.jd.com, oia.zhihu.com, link.zhihu.com, www.zhihu.com, *.baidu.com, ios-h2.prod.ftl.ios-*.prod.ftl.netflix.com, ios.prod.ftl.netflix.com, *.115.com, sub.store, testflight.apple.com, mb3admin.com, duckduckgo.com, pan.baidu.com, *.tencentmusic.com, www.google.com, www.google.com.*
+hostname = %APPEND% oia.zhihu.com, link.zhihu.com, www.zhihu.com, *.baidu.com, pan.baidu.com
