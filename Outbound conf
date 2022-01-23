@@ -222,9 +222,10 @@ falogin.cn = server:syslib // FAST Router
 # Block Ads End
 
 [Script]
-
+# 知乎免跳转
+zhihuX = type=http-response,pattern=^https://www\.zhihu\.com/(question|topic),requires-body=1,max-size=0,script-path=https://raw.githubusercontent.com/elecV2/QuantumultX-Tools/master/betterweb/zhihux.user.js,script-update-interval=0
 [SSID Setting]
 
 [MITM]
 skip-server-cert-verify = true
-hostname = %APPEND% wq.jd.com, draw.jdfcloud.com, jdjoy.jd.com, account.huami.com, wq.jd.com, me-api.jd.com, *.video.qq.com, as.xiaojukeji.com, common.diditaxi.com.cn, api.m.jd.com, www.google.cn, shopmember.m.jd.com, oia.zhihu.com, link.zhihu.com, www.zhihu.com, *.baidu.com, ios-h2.prod.ftl.ios-*.prod.ftl.netflix.com, ios.prod.ftl.netflix.com, *.115.com, sub.store, testflight.apple.com, mb3admin.com, duckduckgo.com, pan.baidu.com, *.tencentmusic.com, www.google.com, www.google.com.*
+hostname = %APPEND% wq.jd.com, draw.jdfcloud.com, jdjoy.jd.com, account.huami.com, wq.jd.com, me-api.jd.com, *.video.qq.com, as.xiaojukeji.com, common.diditaxi.com.cn, api.m.jd.com, shopmember.m.jd.com, oia.zhihu.com, link.zhihu.com, www.zhihu.com, *.baidu.com, ios-h2.prod.ftl.ios-*.prod.ftl.netflix.com, ios.prod.ftl.netflix.com, *.115.com, sub.store, testflight.apple.com, mb3admin.com, duckduckgo.com, pan.baidu.com, *.tencentmusic.com, www.google.com, www.google.com.*
