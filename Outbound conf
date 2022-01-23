@@ -91,7 +91,7 @@ hide-udp = 0
 🌑Proxy = select, 🇭🇰 Hong Kong, 🇨🇳 Taiwan, 🇸🇬 Singapore, 🇯🇵 Japan, 🇺🇸 America, 🧯Fallback, 🕹AutoTest, no-alert=0, hidden=0
 🎞Streaming = select, 🇭🇰 Hong Kong, 🇨🇳 Taiwan, 🇸🇬 Singapore, 🇯🇵 Japan, 🇺🇸 America, 🕹AutoTest, 🦆DuckDuckGo, no-alert=0, hidden=0
 🕹AutoTest = url-test, policy-path=https://sub.store/download/shutiao, update-interval=86400, interval=600, tolerance=50, no-alert=0, hidden=0
-🧯Fallback = fallback, update-interval=0, no-alert=0, hidden=0, policy-path=https://sub.store/download/xibu
+🧯Fallback = fallback, update-interval=0, no-alert=0, hidden=0, policy-path=https://sub.store/download/shutiao
 🎞StreamingSE = select, 🌐Direct, 🇭🇰Sandbox
 🦆DuckDuckGo = select, policy-path=https://sub.store/download/shutiao, update-interval=86400, interval=600, tolerance=50, no-alert=0, hidden=0
 🧭Final = select, 🌑Proxy, 🌐Direct, no-alert=0, hidden=0
