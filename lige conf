@@ -46,6 +46,8 @@ always-real-ip = msftconnecttest.com, msftncsi.com, *.msftconnecttest.com, *.msf
 force-http-engine-hosts = *.ott.cibntv.net, 123.59.31.1,119.18.193.135, 122.14.246.33, 175.102.178.52, 116.253.24.*, 175.6.26.*, 220.169.153.*
 # > VIF Excluded Routes
 tun-excluded-routes = 239.255.255.250/32
+# 如果没有代理服务器支持 UDP 转发，可修改为「DIRECT」，但需注意同一目标主机名 TCP 请求与 UDP 请求的源地址不同所造成的隐私及安全风险。
+udp-policy-not-supported-behaviour = REJECT
 
 [Replica]
 # 0 为关闭，1 为开启
@@ -141,16 +143,4 @@ ca-p12 = MIIKPAIBAzCCCgYGCSqGSIb3DQEHAaCCCfcEggnzMIIJ7zCCBF8GCSqGSIb3DQEHBqCCBFA
 # 插件参数和网络优化
 # 知乎免跳转
 zhihuX = type=http-response,pattern=^https://www\.zhihu\.com/(question|topic),requires-body=1,max-size=0,script-path=https://raw.githubusercontent.com/elecV2/QuantumultX-Tools/master/betterweb/zhihux.user.js,script-update-interval=0
-# > 奈飞评分
-// nf_rating.js = type=http-request,pattern=^https?:\/\/ios(-.*)?\.prod\.ftl\.netflix\.com\/iosui\/user/.+path=%5B%22videos%22%2C%\d+%22%2C%22summary%22%5D,script-path=https://raw.githubusercontent.com/yichahucha/surge/master/nf_rating.js
-// nf_rating.js = type=http-response,requires-body=1,pattern=^https?:\/\/ios(-.*)?\.prod\.ftl\.netflix\.com\/iosui\/user/.+path=%5B%22videos%22%2C%\d+%22%2C%22summary%22%5D,script-path=https://raw.githubusercontent.com/yichahucha/surge/master/nf_rating.js
-# 单集评分
-// nf_rating_season.js = type=http-response,pattern=^https?:\/\/ios(-.*)?\.prod\.ftl\.netflix\.com\/iosui\/warmer/.+type=show-ath,requires-body=1,max-size=0,script-path=https://raw.githubusercontent.com/yichahucha/surge/master/nf_rating_season.js
-# 115离线
-// 115lx.js = script-path=https://raw.githubusercontent.com/ikanam/Surge-Scripts/master/115lx.js,requires-body=true,type=http-response,pattern=^http:\/\/115\.com\/lx.*$
-// 115lx.js = script-path=https://raw.githubusercontent.com/ikanam/Surge-Scripts/master/115lx.js,requires-body=true,type=http-response,pattern=^https?:\/\/webapi\.115\.com\/user\/check_sign.*$
-# sub store
-// Sub-Store = type=http-request,pattern=^https?:\/\/sub\.store,script-path=https://raw.githubusercontent.com/Peng-YM/Sub-Store/master/backend/sub-store.min.js,requires-body=true,timeout=120,max-size=131072
-# tf解除限制
-// TF下载修正 = type=http-request,pattern=^https?:\/\/testflight\.apple\.com\/v\d\/accounts\/.+?\/install$,requires-body=1,max-size=0,script-path=https://gist.githubusercontent.com/NobyDa/9be418b93afc5e9c8a8f4d28ae403cf2/raw/TF_Download.js
 
