@@ -156,7 +156,7 @@ warp+ = wireguard, section-name=SHARE
 一键连 = https, jc.ap.fastqvpn.com, 29980, username=442993652168396800, password=2ef91648-089f-4c81-b34d-06f072ec51dd, skip-cert-verify=true, underlying-proxy=香港, tfo=true
 
 [Proxy Group]
-Proxy = select, HK, TW, JP, SG, US
+🌑Proxy = select, 🇭🇰 Hong Kong, 🇨🇳 Taiwan, 🇸🇬 Singapore, 🇯🇵 Japan, 🇺🇸 America, 🧯Fallback, 🕹AutoTest, 🌏 warp+, 🌏一键连, no-alert=0, hidden=0
 
 Final = select, Proxy, Direct
 
@@ -167,15 +167,12 @@ Telegram = select, HK, SG, US
 
 Streaming = select, HK, TW, JP, SG, US
 
-HK = url-test, policy-path=你的订阅地址, interval=600, tolerance=50, update-interval=86400, policy-regex-filter=(?=.*(港|HK|(?i)Hong))^((?!(台|日|韩|新|美)).)*$, hidden=0
-
-TW = url-test, policy-path=你的订阅地址, interval=600, tolerance=50, update-interval=86400, policy-regex-filter=(?=.*(台|TW|(?i)Taiwan))^((?!(港|日|韩|新|美)).)*$, hidden=0
-
-JP = url-test, policy-path=你的订阅地址, interval=600, tolerance=50, update-interval=86400, policy-regex-filter=(?=.*(日|JP|(?i)Japan))^((?!(港|台|韩|新|美)).)*$, hidden=0
-
-SG = url-test, policy-path=你的订阅地址, interval=600, tolerance=50, update-interval=86400, policy-regex-filter=(?=.*(新|狮|獅|SG|(?i)Singapore))^((?!(港|台|日|韩|美)).)*$, hidden=0
-
-US = url-test, policy-path=你的订阅地址, interval=600, tolerance=50, update-interval=86400, policy-regex-filter=(?=.*(美|US|(?i)States|American))^((?!(港|台|日|韩|新)).)*$, hidden=0
+🇭🇰 Hong Kong = url-test, policy-path=https://sub.store/download/shutiao, url=http://www.gstatic.com/generate_204, interval=3600, tolerance=100, hidden=0, no-alert=1, persistent=1, update-interval=86400, policy-regex-filter=(?=.*(港|HK|(?i)Hong))^((?!(台|日|韩|新|美)).)*$
+🇨🇳 Taiwan = url-test, policy-path=https://sub.store/download/shutiao, url=http://www.gstatic.com/generate_204, interval=3600, tolerance=100, hidden=0, no-alert=1, update-interval=86400, policy-regex-filter=(?=.*(台|TW|(?i)Taiwan))^((?!(港|日|韩|新|美)).)*$
+🇯🇵 Japan = url-test, policy-path=https://sub.store/download/shutiao, url=http://www.gstatic.com/generate_204, interval=3600, tolerance=100, hidden=0, no-alert=1, update-interval=86400, policy-regex-filter=(?=.*(日|JP|(?i)Japan))^((?!(港|台|韩|新|美)).)*$
+🇸🇬 Singapore = url-test, policy-path=https://sub.store/download/shutiao, url=http://www.gstatic.com/generate_204, interval=3600, tolerance=100, hidden=0, no-alert=1, persistent=1, update-interval=0, policy-regex-filter=(?=.*(新|狮|獅|SG|(?i)Singapore))^((?!(港|台|日|韩|美)).)*$
+🇺🇸 America = url-test, policy-path=https://sub.store/download/shutiao, url=http://www.gstatic.com/generate_204, interval=3600, tolerance=100, hidden=0, no-alert=1, update-interval=86400, policy-regex-filter=(?=.*(美|US|(?i)States|American))^((?!(港|台|日|韩|新)).)*$
+🚁𝙊𝙩𝙝𝙚𝙧 = select, policy-path=https://sub.store/download/xibu, url=http://www.gstatic.com/generate_204, interval=3600, tolerance=100, hidden=0, no-alert=1, update-interval=86400, policy-regex-filter=^((?!HK|TW|SG|JP|KR|US).)*$
 
 [Rule]
 # 屏蔽HTTP3/QUIC协议
