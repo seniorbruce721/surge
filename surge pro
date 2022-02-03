@@ -1,151 +1,89 @@
-# 官方手册 - https://manual.nssurge.com/
-# 理解原理 - https://manual.nssurge.com/book/understanding-surge/cn/
-# 帮助中心 - https://nssurge.zendesk.com/
-# 技术社区 - https://community.nssurge.com
-
-
-# Self-use sgmodule:
-
-# Advanced Settings & URL Redirect - https://raw.githubusercontent.com/DivineEngine/Profiles/master/Surge/Module/General.sgmodule
-
-# Block Advertising for Surge iOS - https://raw.githubusercontent.com/DivineEngine/Profiles/master/Surge/Module/Block/Advertising.sgmodule
-
-# Block YouTube Advertising - https://raw.githubusercontent.com/DivineEngine/Profiles/master/Surge/Module/Block/YouTubeAds.sgmodule
-
-# AllInOne - https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rewrite/Surge/AllInOne/AllInOne.sgmodule
-
-# 复写去广告 - https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rewrite/Surge/Advertising/Advertising.sgmodule
-
-# Turn Off Google Safesearch(Beta) - https://raw.githubusercontent.com/DivineEngine/Profiles/master/Surge/Module/Turn-Off-Google-Safesearch.sgmodule
-
-# 解锁 Siri 建议与搜索 - https://raw.githubusercontent.com/VirgilClyne/iRingo/main/sgmodule/Siri_Suggestions_for_Proxy.sgmodule
-
-# 美标天气AQI - https://raw.githubusercontent.com/VirgilClyne/iRingo/main/sgmodule/Apple_Weather.sgmodule
-
-
 [General]
 # Update-2022.1.29.16.10
-
 # 通用设置
-
 # > 增强版 Wi-Fi 助理
 # (在 Wi-Fi 网络不佳时尝试使用数据网络建立连接，请仅当使用不限量的数据流量时开启)
 wifi-assist = true
-
 # > All Hybrid
 # (对所有策略设置 hybrid = true，所有 TCP 连接在建立时均会并发尝试数据网络和 WiFi 连接。除此之外，所有 DNS 查询操作也都将并发在数据网络和 WiFi 上进行。所以若想体验该功能，请手动配置公网 DNS，暂不支持 DOH。请注意数据网络的套餐流量使用。）
 all-hybrid = true
-
 # > Internet 测试 URL
 internet-test-url = http://wifi.vivo.com.cn/generate_204
-
 # > 代理测速 URL
 proxy-test-url = http://cp.cloudflare.com/generate_204
-
 # > 测试超时（秒）
 test-timeout = 3
-
 # > TLS 引擎
 tls-provider = openssl
-
 # > 自定义 GeoIP 数据库(根据需求二选一即可）
 geoip-maxmind-url = https://raw.githubusercontent.com/Loyalsoldier/geoip/release/Country.mmdb
 # geoip-maxmind-url = https://raw.githubusercontent.com/Hackl0us/GeoIP2-CN/release/Country.mmdb
-
 # > UDP IP 防泄漏
 udp-policy-not-supported-behaviour = REJECT
-
 # > 隐藏状态栏上的VPN图标
 hide-vpn-icon = true
-
 # > IPv6 支持（默认关闭）
 ipv6 = false
-
 # > 允许 Wi-Fi 访问 (仅 iOS ）
 allow-wifi-access = true
 wifi-access-http-port = 6152
 wifi-access-socks5-port = 6153
-
 # > 允许 Wi-Fi 访问 (仅 macOS，若允许远程访问将「127.0.0.1」改为「0.0.0.0」)
 http-listen = 127.0.0.1:6152
 socks5-listen = 127.0.0.1:6153
-
 # > HTTP-API
 # 依次为：密码，主机名，端口
 http-api = Brian@0.0.0.0:6171
-
 # > HTTP-API-TLS
 http-api-tls = false
-
 # > Web控制器
 # Safari输入127.0.0.1:6171,填入HTTP-API密码即可。
 http-api-web-dashboard = true
-
 # > 兼容模式 (仅 iOS)
 # compatibility-mode = 0
-
 # > 跳过代理
 skip-proxy = 127.0.0.1, 192.168.0.0/16, 10.0.0.0/8, 172.16.0.0/12, 100.64.0.0/10, localhost, *.local
-
 # > 排除简单主机名
 exclude-simple-hostnames = true
-
 # > Network framwork
 # 启动 Network.framework 以开启用户态网络协议栈，可提高吞吐量，降低延迟并开启 MPTCP。（需手动重启 Surge) 实验性功能可能导致 Surge 不稳定，甚至引起系统崩溃。
 # > 默认开启：true ，可根据自己的需求选择关闭：false 。
 network-framework = true
-
 # > DNS 服务器
 dns-server = 119.29.29.29, system
-
 # > DNS over HTPPS (如无必要不建议使用 DNS over HTTPS)
 # doh-server = https://dns.alidns.com/dns-query
-
 # > 从 /etc/hosts 读取 DNS 记录
 read-etc-hosts = true
-
 # 高级设置
-
 # > 日志级别
 loglevel = warning
-
 # > 当遇到 REJECT 策略时返回错误页
 show-error-page-for-reject = true
-
 # > Always Real IP Hosts
 always-real-ip = *.msftconnecttest.com, *.msftncsi.com, *.srv.nintendo.net, *.stun.playstation.net, xbox.*.microsoft.com, *.xboxlive.com, *.logon.battlenet.com.cn, *.logon.battle.net, stun.l.google.com
-
 # Hijack DNS
 # hijack-dns = 8.8.8.8:53, 8.8.4.4:53
-
 # > VIF Excluded Routes
 tun-excluded-routes = 239.255.255.250/32
-
 # > 路由防火墙
 # 包含所有的网络请求
 include-all-networks = false
-
 # 包含本地网络请求
 include-local-networks = false
-
 # 代理请求本地DNS映射
 use-local-host-item-for-proxy = false
 
 [Replica]
 # 0 为关闭，1 为开启
-
 # > 隐藏 Apple 请求
 hide-apple-request = 0
-
 # > 隐藏崩溃追踪器请求
 hide-crash-reporter-request = 1
-
 # > 隐藏 UDP 会话
 hide-udp = 0
-
 # > 关键词过滤器
 # keyword-filter-type = none
-
 # > 关键词
 # keyword-filter = (null)
 
@@ -153,37 +91,27 @@ hide-udp = 0
 Direct = direct
 Reject = reject
 warp+ = wireguard, section-name=SHARE
-一键连 = https, jc.ap.fastqvpn.com, 29980, username=442993652168396800, password=2ef91648-089f-4c81-b34d-06f072ec51dd, skip-cert-verify=true, underlying-proxy=香港, tfo=true
+一键连 = https, jc.ap.fastqvpn.com, 29980, username=442993652168396800, password=2ef91648-089f-4c81-b34d-06f072ec51dd, skip-cert-verify=true
 
 [Proxy Group]
-🌑Proxy = select, 🇭🇰 Hong Kong, 🇨🇳 Taiwan, 🇸🇬 Singapore, 🇯🇵 Japan, 🇺🇸 America, 🧯Fallback, 🕹AutoTest, 🌏 warp+, 🌏一键连, no-alert=0, hidden=0
-
-Final = select, Proxy, Direct
-
-# +86，港，澳，台，手机号码绑定用户走Direct即可。Google Voice用户可根据你WeChat服务器所在的地区来选择不同的策略。
-WeChat = select, HK, TW, JP, SG, US, Direct
-
+Proxy = select, HK, TW, JP, SG, US, warp+, 一键连, no-alert=0, hidden=0
+Streaming = select, HK, TW, JP, SG, US, warp+, 一键连, no-alert=0, hidden=0
 Telegram = select, HK, SG, US
-
-Streaming = select, HK, TW, JP, SG, US
-
-🇭🇰 Hong Kong = url-test, policy-path=https://sub.store/download/shutiao, url=http://www.gstatic.com/generate_204, interval=3600, tolerance=100, hidden=0, no-alert=1, persistent=1, update-interval=86400, policy-regex-filter=(?=.*(港|HK|(?i)Hong))^((?!(台|日|韩|新|美)).)*$
-🇨🇳 Taiwan = url-test, policy-path=https://sub.store/download/shutiao, url=http://www.gstatic.com/generate_204, interval=3600, tolerance=100, hidden=0, no-alert=1, update-interval=86400, policy-regex-filter=(?=.*(台|TW|(?i)Taiwan))^((?!(港|日|韩|新|美)).)*$
-🇯🇵 Japan = url-test, policy-path=https://sub.store/download/shutiao, url=http://www.gstatic.com/generate_204, interval=3600, tolerance=100, hidden=0, no-alert=1, update-interval=86400, policy-regex-filter=(?=.*(日|JP|(?i)Japan))^((?!(港|台|韩|新|美)).)*$
-🇸🇬 Singapore = url-test, policy-path=https://sub.store/download/shutiao, url=http://www.gstatic.com/generate_204, interval=3600, tolerance=100, hidden=0, no-alert=1, persistent=1, update-interval=0, policy-regex-filter=(?=.*(新|狮|獅|SG|(?i)Singapore))^((?!(港|台|日|韩|美)).)*$
-🇺🇸 America = url-test, policy-path=https://sub.store/download/shutiao, url=http://www.gstatic.com/generate_204, interval=3600, tolerance=100, hidden=0, no-alert=1, update-interval=86400, policy-regex-filter=(?=.*(美|US|(?i)States|American))^((?!(港|台|日|韩|新)).)*$
-🚁𝙊𝙩𝙝𝙚𝙧 = select, policy-path=https://sub.store/download/xibu, url=http://www.gstatic.com/generate_204, interval=3600, tolerance=100, hidden=0, no-alert=1, update-interval=86400, policy-regex-filter=^((?!HK|TW|SG|JP|KR|US).)*$
+WeChat = select, HK, TW, JP, SG, US, Direct
+Final = select, Proxy, Direct
+HK = url-test, policy-path=https://sub.store/download/shutiao, interval=600, tolerance=50, update-interval=86400, policy-regex-filter=(?=.*(港|HK|(?i)Hong))^((?!(台|日|韩|新|美)).)*$, hidden=0, no-alert=0
+TW = url-test, policy-path=https://sub.store/download/shutiao, interval=600, tolerance=50, update-interval=86400, policy-regex-filter=(?=.*(台|TW|(?i)Taiwan))^((?!(港|日|韩|新|美)).)*$, hidden=0, no-alert=0
+JP = url-test, policy-path=https://sub.store/download/shutiao, interval=600, tolerance=50, update-interval=86400, policy-regex-filter=(?=.*(日|JP|(?i)Japan))^((?!(港|台|韩|新|美)).)*$, hidden=0, no-alert=0
+SG = url-test, policy-path=https://sub.store/download/shutiao, interval=600, tolerance=50, update-interval=86400, policy-regex-filter=(?=.*(新|狮|獅|SG|(?i)Singapore))^((?!(港|台|日|韩|美)).)*$, hidden=0, no-alert=0
+US = url-test, policy-path=https://sub.store/download/shutiao, interval=600, tolerance=50, update-interval=86400, policy-regex-filter=(?=.*(美|US|(?i)States|American))^((?!(港|台|日|韩|新)).)*$, hidden=0, no-alert=0
 
 [Rule]
 # 屏蔽HTTP3/QUIC协议
-AND,((PROTOCOL,UDP),(DEST-PORT,443)),REJECT-NO-DROP
-
+AND,((PROTOCOL,UDP), (DEST-PORT,443)),REJECT-NO-DROP
 # 屏蔽YouTube的UDP
-AND,((PROTOCOL,UDP),(DOMAIN-SUFFIX,googlevideo.com)),REJECT-NO-DROP
-
+AND,((PROTOCOL,UDP), (DOMAIN-SUFFIX,googlevideo.com)),REJECT-NO-DROP
 # Client(仅 macOS)
 PROCESS-NAME,UUBooster,Direct
-
 # > Download (仅 macOS)
 PROCESS-NAME,aria2c,Direct
 PROCESS-NAME,fdm,Direct
@@ -194,54 +122,39 @@ PROCESS-NAME,Transmission,Direct
 PROCESS-NAME,uTorrent,Direct
 PROCESS-NAME,WebTorrent,Direct
 PROCESS-NAME,WebTorrent Helper,Direct
-
 # 屏蔽 iOS 系统更新（如需屏蔽iOS系统更新请自行注释掉 “#" 即可生效）
 # DOMAIN,mesu.apple.com,Reject
 # DOMAIN,gdmf.apple.com,Reject
 # DOMAIN,updates-http.cdn-apple.com,Reject
 # DOMAIN,xp.apple.com,Reject
-
 # 后续规则修正
 RULE-SET,https://raw.githubusercontent.com/DivineEngine/Profiles/master/Surge/Ruleset/Unbreak.list,Direct
-
 # 广告拦截
 RULE-SET,https://raw.githubusercontent.com/DivineEngine/Profiles/master/Surge/Ruleset/Guard/Advertising.list,Reject
 DOMAIN-SET,https://raw.githubusercontent.com/DivineEngine/Profiles/master/Surge/Ruleset/Guard/AdvertisingPlus.list,Reject
 DOMAIN-SET,https://raw.githubusercontent.com/privacy-protection-tools/anti-AD/master/anti-ad-surge2.txt,Reject
-
 # 隐私保护
 RULE-SET,https://raw.githubusercontent.com/DivineEngine/Profiles/master/Surge/Ruleset/Guard/Privacy.list,Reject
-
 # 应用内追踪
 DOMAIN-SET,https://raw.githubusercontent.com/mieqq/mieqq/master/In-AppTracker.txt,Reject
-
 # 运营商劫持或恶意网站
 RULE-SET,https://raw.githubusercontent.com/DivineEngine/Profiles/master/Surge/Ruleset/Guard/Hijacking.list,Reject
-
 # WeChat (此规则仅针对WeChat绑定Google Voice的用户。+86、港、澳、台用户可直接Direct。)
 RULE-SET,https://raw.githubusercontent.com/DivineEngine/Profiles/master/Surge/Ruleset/Extra/WeChat/WeChatSG.list,WeChat
-
 # 国际流媒体服务
 RULE-SET,https://raw.githubusercontent.com/DivineEngine/Profiles/master/Surge/Ruleset/StreamingMedia/Streaming.list,Streaming
-
 # Telegram服务
 RULE-SET,https://raw.githubusercontent.com/DivineEngine/Profiles/master/Surge/Ruleset/Extra/Telegram/Telegram.list,Telegram
-
 # 全球加速
 RULE-SET,https://raw.githubusercontent.com/DivineEngine/Profiles/master/Surge/Ruleset/Global.list,Proxy
-
 # Apple 服务
 RULE-SET,https://raw.githubusercontent.com/DivineEngine/Profiles/master/Surge/Ruleset/Extra/Apple/Apple.list,Direct
-
 # 中国直连
 RULE-SET,https://raw.githubusercontent.com/DivineEngine/Profiles/master/Surge/Ruleset/China.list,Direct
-
 # Local Area Network 局域网
 RULE-SET,LAN,Direct
-
 # GeoIP China
 GEOIP,CN,Direct
-
 FINAL,Final,dns-failed
 
 [Host]
@@ -267,18 +180,14 @@ mzstatic.com = server:119.29.29.29
 *.apple.com.edgekey.net = server:119.29.29.29
 *.apple.com.edgekey.net.globalredir.akadns.net = server:119.29.29.29
 *icloud.com.akadns.net = server:119.29.29.29
-
 # Firebase Cloud Messaging
 mtalk.google.com = 108.177.125.188
-
 # Google Dl
 dl.google.com = server:119.29.29.29
 dl.l.google.com = server:119.29.29.29
 update.googleapis.com = server:119.29.29.29
-
 # PlayStation
 *.dl.playstation.net = server:119.29.29.29
-
 # Router Admin Panel
 amplifi.lan = server:syslib // Ubiquiti Amplifi Router
 router.synology.com = server:syslib // Synology Router
@@ -296,24 +205,17 @@ tplogin.cn = server:syslib // TP-Link Router
 tplinklogin.net = server:syslib // TP-Link Router
 melogin.cn = server:syslib // MERCURY Router
 falogin.cn = server:syslib // FAST Router
-
 # Apple TestFlight
 *testflight.apple.com = server:8.8.4.4
-
 # 解锁了「模块」功能的用户可以使用 General.sgmodule 后可移除 [URL Rewrite] 及 [MITM] 的「hostname = www.google.cn,api.abema.io」部分
 # 建议使用 General.sgmodule，其他 .sgmodule 按需加入
 # 未解锁「模块」功能的用户不要删除以下内容，参照说明(https://github.com/DivineEngine/Profiles/tree/master/Surge)使用快捷指令更新相关内容。
 
-[Header Rewrite]
-
-[Script]
-
-[SSID Setting]
-
 [MITM]
 skip-server-cert-verify = true
-
 hostname = duckduckgo.com, sub.store, boxer.baidu.com, api.weibo.cn, mapi.weibo.com, *.uve.weibo.com, -*.weibo.com, mp.weixin.qq.com, security.wechat.com, weixin110.qq.com, vip1.kuwo.cn, testflight.apple.com, pan.baidu.com, weather-data.apple.com
+ca-passphrase = 439688B5
+ca-p12 = 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
 
 [WireGuard SHARE]
 private-key = yBzFxeDw+JKPSnJIEOlQp1nXb8aux+AFXJF2wPfYBWw=
@@ -321,3 +223,4 @@ self-ip = 172.16.0.253
 dns-server = 1.1.1.1
 mtu = 1280
 peer = (public-key = bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=, allowed-ips = 0.0.0.0/0, endpoint = 162.159.193.10:2408)
+
