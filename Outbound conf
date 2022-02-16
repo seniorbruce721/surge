@@ -83,9 +83,10 @@ hide-udp = 0
 [Proxy]
 🌐Direct = direct
 ⛔️Reject = reject
-🇨🇳TheHub = ss, 1.2.3.4, 443, encrypt-method=chacha20-ietf-poly1305, password=password
-🇺🇸LosSantos = vmess, v2ray.cool, 443, username=a3482e88-686a-4a58-8126-99c9df64b7bf, tls=true, ws=true, ws-path=/v2ray.cool/
-🇭🇰Sandbox = trojan, trojan.com, 443, password=password
+🌏 warp+ = wireguard, section-name=SHARE
+一键连 = https, jc.ap.fastqvpn.com, 29980, username=442993652168396800, password=2ef91648-089f-4c81-b34d-06f072ec51dd, skip-cert-verify=true
+🌏 Warp+1 = wireguard, section-name=790786AA
+🌏 Warp+2 = wireguard, section-name=42B82092
 
 [Proxy Group]
 🌑Proxy = select, 🇭🇰 Hong Kong, 🇨🇳 Taiwan, 🇸🇬 Singapore, 🇯🇵 Japan, 🇺🇸 America, 🧯Fallback, 🕹AutoTest, no-alert=0, hidden=0
@@ -225,7 +226,35 @@ falogin.cn = server:syslib // FAST Router
 # 知乎免跳转
 zhihuX = type=http-response,pattern=^https://www\.zhihu\.com/(question|topic),requires-body=1,max-size=0,script-path=https://raw.githubusercontent.com/elecV2/QuantumultX-Tools/master/betterweb/zhihux.user.js,script-update-interval=0
 [SSID Setting]
+获取互助码 = type=cron,cronexp=20 13 * * 6,wake-system=1,timeout=3600,script-path=https://raw.githubusercontent.com/shufflewzc/faker2/main/jd_get_share_code.js,script-update-interval=0
+京东资产变动通知 = type=cron,cronexp=2 9 * * *,wake-system=1,timeout=3600,script-path=https://raw.githubusercontent.com/Tartarus2014/Script/master/jd_bean_change.js
+Boxjs恢复 = type=cron,cronexp=5 10 * * *,script-path=https://raw.githubusercontent.com/dompling/Script/master/gist/restore.js,script-update-interval=0
+Boxjs备份 = type=cron,cronexp=0 10 * * *,script-path=https://raw.githubusercontent.com/dompling/Script/master/gist/backup.js,script-update-interval=0
+Sub-Store 自动同步 = type=cron,cronexp=0 12 * * *,script-path=https://raw.githubusercontent.com/Peng-YM/Sub-Store/master/scripts/cron-sync-artifacts.js,script-update-interval=0
 
 [MITM]
 skip-server-cert-verify = true
 hostname = %APPEND% oia.zhihu.com, link.zhihu.com, www.zhihu.com, *.baidu.com, pan.baidu.com
+
+[WireGuard SHARE]
+private-key = yBzFxeDw+JKPSnJIEOlQp1nXb8aux+AFXJF2wPfYBWw=
+self-ip = 172.16.0.253
+dns-server = 1.1.1.1
+mtu = 1280
+peer = (public-key = bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=, allowed-ips = 0.0.0.0/0, endpoint = 162.159.193.10:2408)
+
+[WireGuard 790786AA]
+private-key = oM8FSVydfZO7lKozP4mZshIM+tV1jVqd4lZVCK9FBWs=
+self-ip = 172.16.0.254
+dns-server = 1.1.1.1
+mtu = 1420
+peer = (public-key = bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=, allowed-ips = 0.0.0.0/0, endpoint = 162.159.193.1:2408)
+
+[WireGuard 42B82092]
+private-key = IFCy1m2WR0H4vEnYPO9h1RuJiUOaeSQBO9DRxTzheXQ=
+self-ip = 172.16.0.254
+dns-server = 1.1.1.1
+mtu = 1420
+peer = (public-key = bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=, allowed-ips = 0.0.0.0/0, endpoint = 162.159.193.6:2408)
+
+
