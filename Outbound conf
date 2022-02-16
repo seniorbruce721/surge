@@ -1,31 +1,20 @@
-# 官方手册 - https://manual.nssurge.com/
-# 理解原理 - https://manual.nssurge.com/book/understanding-surge/cn/
-# 帮助中心 - https://nssurge.zendesk.com/
-# 技术社区 - https://community.nssurge.com
-
 [General]
 # 通用设置
-
 # > 增强版 Wi-Fi 助理
 # (在 Wi-Fi 网络不佳时尝试使用数据网络建立连接，请仅当使用不限量的数据流量时开启)
 wifi-assist = false
-
 # > Internet 测试 URL
 internet-test-url = http://wifi.vivo.com.cn/generate_204
 # > 代理测速 URL
 proxy-test-url = http://cp.cloudflare.com/generate_204
 # > 测试超时（秒）
 test-timeout = 5
-
 # > TLS 引擎
 tls-provider = openssl
-
 # > 自定义 GeoIP 数据库
 geoip-maxmind-url = https://raw.githubusercontent.com/Loyalsoldier/geoip/release/Country.mmdb
-
 # > IPv6 支持（默认关闭）
 ipv6 = false
-
 # > 允许 Wi-Fi 访问 (仅 iOS，若允许远程访问将「false」改为「true」)
 allow-wifi-access = false
 wifi-access-http-port = 6152
@@ -33,36 +22,27 @@ wifi-access-socks5-port = 6153
 # > 允许 Wi-Fi 访问 (仅 macOS，若允许远程访问将「127.0.0.1」改为「0.0.0.0」)
 http-listen = 127.0.0.1:6152
 socks5-listen = 127.0.0.1:6153
-
 # > 兼容模式 (仅 iOS)
 # compatibility-mode = 0
 # > 跳过代理
 skip-proxy = 127.0.0.1, 192.168.0.0/16, 10.0.0.0/8, 172.16.0.0/12, 100.64.0.0/10, localhost, *.local, passenger.t3go.cn
 # > 排除简单主机名
 exclude-simple-hostnames = true
-
 # > Network framwork
 network-framework = false
-
 # > DNS 服务器 (如无必要不建议使用 DNS over HTTPS)
 dns-server = 119.29.29.29,system
 # > 从 /etc/hosts 读取 DNS 记录
 read-etc-hosts = true
-
 # 高级设置
-
 # > 日志级别
 loglevel = notify
-
 # > 当遇到 REJECT 策略时返回错误页
 show-error-page-for-reject = true
-
 # > Always Real IP Hosts
 always-real-ip = *.msftconnecttest.com, *.msftncsi.com, *.srv.nintendo.net, *.stun.playstation.net, xbox.*.microsoft.com, *.xboxlive.com, *.logon.battlenet.com.cn, *.logon.battle.net, stun.l.google.com
-
 # > VIF Excluded Routes
 tun-excluded-routes = 239.255.255.250/32
-
 # 如果没有代理服务器支持 UDP 转发，可修改为「 direct 」或注释下条，但需注意同一目标主机名 TCP 请求与 UDP 请求的源地址不同所造成的隐私及安全风险。
 udp-policy-not-supported-behaviour = reject
 
@@ -80,20 +60,22 @@ hide-udp = 0
 # > 关键词
 # keyword-filter = (null)
 
-
 [Proxy]
 🌐Direct = direct
 ⛔️Reject = reject
+🇨🇳TheHub = ss, 1.2.3.4, 443, encrypt-method=chacha20-ietf-poly1305, password=password
+🇺🇸LosSantos = vmess, v2ray.cool, 443, username=a3482e88-686a-4a58-8126-99c9df64b7bf, tls=true, ws=true, ws-path=/v2ray.cool/
+🇭🇰Sandbox = trojan, trojan.com, 443, password=password
 🌏 warp+ = wireguard, section-name=SHARE
-一键连 = https, jc.ap.fastqvpn.com, 29980, username=442993652168396800, password=2ef91648-089f-4c81-b34d-06f072ec51dd, skip-cert-verify=true
+🌏一键连 = https, jc.ap.fastqvpn.com, 29980, username=442993652168396800, password=2ef91648-089f-4c81-b34d-06f072ec51dd, skip-cert-verify=true
 🌏 Warp+1 = wireguard, section-name=790786AA
 🌏 Warp+2 = wireguard, section-name=42B82092
 
 [Proxy Group]
-🌑Proxy = select, 🇭🇰 Hong Kong, 🇨🇳 Taiwan, 🇸🇬 Singapore, 🇯🇵 Japan, 🇺🇸 America, 🧯Fallback, 🕹AutoTest, no-alert=0, hidden=0
-🎞Streaming = select, 🇭🇰 Hong Kong, 🇨🇳 Taiwan, 🇸🇬 Singapore, 🇯🇵 Japan, 🇺🇸 America, 🕹AutoTest, 🦆DuckDuckGo, no-alert=0, hidden=0
-🕹AutoTest = url-test, policy-path=https://sub.store/download/shutiao, update-interval=86400, interval=600, tolerance=50, no-alert=0, hidden=0
-🧯Fallback = fallback, update-interval=0, no-alert=0, hidden=0, policy-path=https://sub.store/download/shutiao
+🌑Proxy = select, 🇭🇰 Hong Kong, 🇨🇳 Taiwan, 🇸🇬 Singapore, 🇯🇵 Japan, 🇺🇸 America, 🧯Fallback, 🕹AutoTest, 🌏一键连, 🌏 Warp+, no-alert=0, hidden=0
+🎞Streaming = select, 🇭🇰 Hong Kong, 🇨🇳 Taiwan, 🇸🇬 Singapore, 🇯🇵 Japan, 🇺🇸 America, 🕹AutoTest, 🦆DuckDuckGo, 🌏 Warp+, 🌏一键连, no-alert=0, hidden=0
+🕹AutoTest = url-test, policy-path=https://sub.store/download/shutiao, update-interval=86400, interval=600, tolerance=50, no-alert=0, hidden=0, policy-regex-filter=Netflix|游戏｜IEPL
+🧯Fallback = fallback, update-interval=0, no-alert=0, hidden=0, policy-path=https://sub.store/download/shutiao, policy-regex-filter=Netflix|游戏｜IEPL
 🎞StreamingSE = select, 🌐Direct, 🇭🇰Sandbox
 🦆DuckDuckGo = select, policy-path=https://sub.store/download/shutiao, update-interval=86400, interval=600, tolerance=50, no-alert=0, hidden=0
 🧭Final = select, 🌑Proxy, 🌐Direct, no-alert=0, hidden=0
@@ -104,9 +86,10 @@ hide-udp = 0
 🇸🇬 Singapore = url-test, policy-path=https://sub.store/download/shutiao, url=http://www.gstatic.com/generate_204, interval=3600, tolerance=100, hidden=0, no-alert=1, persistent=1, update-interval=0, policy-regex-filter=(?=.*(新|狮|獅|SG|(?i)Singapore))^((?!(港|台|日|韩|美)).)*$
 🇺🇸 America = url-test, policy-path=https://sub.store/download/shutiao, url=http://www.gstatic.com/generate_204, interval=3600, tolerance=100, hidden=0, no-alert=1, update-interval=86400, policy-regex-filter=(?=.*(美|US|(?i)States|American))^((?!(港|台|日|韩|新)).)*$
 🚁𝙊𝙩𝙝𝙚𝙧 = select, policy-path=https://sub.store/download/shutiao, url=http://www.gstatic.com/generate_204, interval=3600, tolerance=100, hidden=0, no-alert=1, update-interval=86400, policy-regex-filter=^((?!香港|台湾|新加坡|日本|韩国|美国|德国).)*$
+🌏 Warp+ = load-balance, 🌏 Warp+1, 🌏 Warp+2, 🌏 warp+, persistent=0, no-alert=0, hidden=0
 
 [Rule]
-AND,((PROTOCOL,UDP),(DEST-PORT,443)),REJECT-NO-DROP
+AND,((PROTOCOL,UDP), (DEST-PORT,443)),REJECT-NO-DROP
 # Client
 PROCESS-NAME,UUBooster,🌐Direct
 # > Download
@@ -119,41 +102,39 @@ PROCESS-NAME,Transmission,🌐Direct
 PROCESS-NAME,uTorrent,🌐Direct
 PROCESS-NAME,WebTorrent,🌐Direct
 PROCESS-NAME,WebTorrent Helper,🌐Direct
-
 # Unbreak 后续规则修正
 RULE-SET,https://raw.githubusercontent.com/DivineEngine/Profiles/master/Surge/Ruleset/Unbreak.list,🌐Direct
-
 # Advertising 广告
 RULE-SET,https://raw.githubusercontent.com/DivineEngine/Profiles/master/Surge/Ruleset/Guard/Advertising.list,🛡Guard
 DOMAIN-SET,https://raw.githubusercontent.com/DivineEngine/Profiles/master/Surge/Ruleset/Guard/AdvertisingPlus.list,🛡Guard
-
 # Privacy 隐私
 # RULE-SET,https://raw.githubusercontent.com/DivineEngine/Profiles/master/Surge/Ruleset/Guard/Privacy.list,🛡Guard
-
 # Hijacking 运营商劫持或恶意网站
 RULE-SET,https://raw.githubusercontent.com/DivineEngine/Profiles/master/Surge/Ruleset/Guard/Hijacking.list,🛡Guard
-
+# Disney+
+# RULE-SET,https://raw.githubusercontent.com/DivineEngine/Profiles/master/Surge/Ruleset/StreamingMedia/Video/DisneyPlus.list,🎞Streaming
+# Netflix
+# RULE-SET,https://raw.githubusercontent.com/DivineEngine/Profiles/master/Surge/Ruleset/StreamingMedia/Video/Netflix.list,🎞Streaming
+# YouTube
+# RULE-SET,https://raw.githubusercontent.com/DivineEngine/Profiles/master/Surge/Ruleset/StreamingMedia/Video/YouTube.list,🎞Streaming
+# Spotify
+# RULE-SET,https://raw.githubusercontent.com/DivineEngine/Profiles/master/Surge/Ruleset/StreamingMedia/Music/Spotify.list,🎞Streaming
 # Streaming 国际流媒体服务
 RULE-SET,https://raw.githubusercontent.com/DivineEngine/Profiles/master/Surge/Ruleset/StreamingMedia/Streaming.list,🎞Streaming
-
 # StreamingSE 中国流媒体服务（面向海外版本）
 RULE-SET,https://raw.githubusercontent.com/DivineEngine/Profiles/master/Surge/Ruleset/StreamingMedia/StreamingSE.list,🎞StreamingSE
-
+# Telegram
+# RULE-SET,https://raw.githubusercontent.com/DivineEngine/Profiles/master/Surge/Ruleset/Extra/Telegram/Telegram.list,🌑Proxy
 # Global 全球加速
 RULE-SET,https://raw.githubusercontent.com/DivineEngine/Profiles/master/Surge/Ruleset/Global.list,🌑Proxy
-
 # Apple 服务
 RULE-SET,https://raw.githubusercontent.com/DivineEngine/Profiles/master/Surge/Ruleset/Extra/Apple/Apple.list,🌐Direct
-
 # China 中国直连
 RULE-SET,https://raw.githubusercontent.com/DivineEngine/Profiles/master/Surge/Ruleset/China.list,🌐Direct
-
 # Local Area Network 局域网
 RULE-SET,LAN,🌐Direct
-
 # GeoIP China
 GEOIP,CN,🌐Direct
-
 FINAL,🧭Final,dns-failed
 
 [Host]
@@ -162,6 +143,7 @@ aaplimg.com = server:119.29.29.29
 apple.com = server:119.29.29.29
 apple.com.cn = server:119.29.29.29
 apple-cloudkit.com = server:119.29.29.29
+apple-livephotoskit.com = server:119.29.29.29
 apple-mapkit.com = server:119.29.29.29
 cdn-apple.com = server:119.29.29.29
 icloud.com = server:119.29.29.29
@@ -170,6 +152,7 @@ mzstatic.com = server:119.29.29.29
 *.aaplimg.com = server:119.29.29.29
 *.apple.com = server:119.29.29.29
 *.apple-cloudkit.com = server:119.29.29.29
+*.apple-livephotoskit.com = server:119.29.29.29
 *.apple-mapkit.com = server:119.29.29.29
 *.cdn-apple.com = server:119.29.29.29
 *.icloud.com = server:119.29.29.29
@@ -179,18 +162,14 @@ mzstatic.com = server:119.29.29.29
 *.apple.com.edgekey.net = server:119.29.29.29
 *.apple.com.edgekey.net.globalredir.akadns.net = server:119.29.29.29
 *icloud.com.akadns.net = server:119.29.29.29
-
 # > Firebase Cloud Messaging
 mtalk.google.com = 108.177.125.188
-
 # > Google Dl
 dl.google.com = server:119.29.29.29
 dl.l.google.com = server:119.29.29.29
 update.googleapis.com = server:119.29.29.29
-
 # > PlayStation
 *.dl.playstation.net = server:119.29.29.29
-
 # > Router Admin Panel
 amplifi.lan = server:syslib // Ubiquiti Amplifi Router
 router.synology.com = server:syslib // Synology Router
@@ -208,34 +187,21 @@ tplogin.cn = server:syslib // TP-Link Router
 tplinklogin.net = server:syslib // TP-Link Router
 melogin.cn = server:syslib // MERCURY Router
 falogin.cn = server:syslib // FAST Router
-
 # 解锁了「模块」功能的用户可以使用 General.sgmodule 后可移除 [URL Rewrite] 及 [MITM] 的「hostname = www.google.cn,api.abema.io」部分
 # 建议使用 General.sgmodule，其他 .sgmodule 按需加入
 # 未解锁「模块」功能的用户不要删除以下内容，参照说明(https://github.com/DivineEngine/Profiles/tree/master/Surge)使用快捷指令更新相关内容。
 
-[Header Rewrite]
-# 知乎防跳转
-^https://www\.zhihu\.com\/(question|topic) header-replace User-Agent "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36"
-# 百度防跳转
-^https?:\/\/.*\.baidu\.com header-replace User-Agent "Mozilla/5.0 (Linux; Android 9.0; iPhone; U; CPU iPhone OS 9_9_9 like Mac OS X; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/76.0.3809.89 Mobile Safari/537.36 T7/11.23 SP-engine/2.19.0 baiduboxapp (Baidu; P1 9.0)"
-
-# Block Ads Start
-
-# Block Ads End
+[MITM]
+skip-server-cert-verify = true
+hostname = www.google.cn, www.firefox.com.cn, api.abema.io
+ca-passphrase = 6F0A9109
+ca-p12 = MIIKPAIBAzCCCgYGCSqGSIb3DQEHAaCCCfcEggnzMIIJ7zCCBF8GCSqGSIb3DQEHBqCCBFAwggRMAgEAMIIERQYJKoZIhvcNAQcBMBwGCiqGSIb3DQEMAQYwDgQITtQkW5EJ69UCAggAgIIEGMYnw+vGfBB8TpRhX5vXiCKk7H2Lx7P9ocY1kY3CEeorEvHxgXayIw8xxvmeiKBWk5UqUyBB4vgb03K4XgkFjW+E8NpB2Hqfi4QN45TOutROdvW5OiTjM1/hMyXN0DyFNx/QI0Hup9RqrZHgUy4CnNsCF5HhvuMuQYDhtI+XHsDIWS8LVk4oQ72JXSS2Ve4BZ6XzjCBCbbM/gEFLTth+DrvqQe3/Uvdpe0HvvnAWESYeyIuz0zyHIbNIemJDt+0MLgxWDsN3UyqlifpLldxHDn3Lk6wjCQbtIpWYKUM3hN2qapi4K7oVNEkT/1e1wZhF5mZbCQ2VttrhTzaeBHjzaO4r9wcEBeFnwKH+enTutMte/T1IOzYTANF4tUkDOKUklUSZvApPGlmFfgHpVCyB4YBP/bdPuhygAneYAcWBQJiOf6XDiY3Qfp31D+7QNUsTsBh5+LOSPDf3j1rCUY1N3tC1r48NTqEkT0BDUlSjOEtFvJn44M47exK7BSfpfmkZ9R9xoojx6eM/Bxn2mPEX0hR8FlMSv64pEYe+EBbQ1TNqNqqlY0CXGbEdUaR7e2SBGl4zC3jbICfYjgtpC6H5/2GpkZF3hrdvBOUmoLK22ktMBKnxzJV/EoJPqo2Hw/6Ss8j/fK6GPsfdOaVzaL5YIA+AyTp2U4qWi2LcqWTA3ul/ztw2/H/vUlm4xJ1nThNRkZbSfLBOvLuXOE/NLp9doxa9Wd6e9x294nQ3BZdyHnVpl92HEg36SxCxh1qKuptwKiYBWufO4oR0l4+xq2j+eUOZl8kncMAYN3ExMXcJzhT3JBhKYeK2n/MLw9Dm8ZOJujc6SkDmJXTRhpaiw+tMHUcEveZdZGifbFVFRoSV1/BvuOmmJyuE/1GZU8EyelftcsOkzVczYWwXCIdrsV13E48o6bd0oqxTxnmMMCwotVXT0IOmQP81cpuuH4sy4kgrOZ5WSU/mPRuq9Dsfm026IOgJ3AWYv4gKXvzD5PwVuPuwxBwAFa04x98DivMmTIDsN77WmXSB/ChSgOqNHC4h3Ad3xoLs2p7+hi1pZU80rGPzcKuAB0d0jWtOnK+phyhxyZX1zv/egcZ2F8//ixK5QdrYDm3ooj/sbcOG/r3ez738jwCZB7GDCFM4XvyGey6sVbI6xECjlnM9uCt8LE0c5lyI6lBn7uXGOIIUgQauziKaexIYWP/VhdwBVutmp++UasqB/zxS7qHDb1TkB2eQrCnvGUCDvO/X1a+3f4qDP+fDAnbLq51dl/gfBjSwOk1VXoV7dhpvJCDBQWVkCdk7xIkZL2ItwyBvq8oT++5AMr3isZoOhd+lCZ33+zm96yMTSV9NIhwf91bMCj2DG281esQBBDOZ0ezkrsgi4tGrcFJQmj41jWOZV1MwggWIBgkqhkiG9w0BBwGgggV5BIIFdTCCBXEwggVtBgsqhkiG9w0BDAoBAqCCBO4wggTqMBwGCiqGSIb3DQEMAQMwDgQIiR21iE5vixwCAggABIIEyB0I43praL0zq70YLRYdgRyL51WLzNiRWPa+KfjUDlUofBSBjbDJJa9Pgb0nkT5D4uCuhWsyc2refcF1b9Te65QsFCZR1uNKLgN0MGymYUcf5CCvCGzcTZtN582rwWaNZ0wTmNphQkMzsOknYBNS1LNW+fHK++LyllaVf68yQ133BtK1Zbso8PUnJvTX/F2GxhuR1HxfGPwoc/fgoDIXXjGdt14i4nCk86akYDxP5hCtrAiMr95x7XOru1MBaM21f+EIAvXv1d2N12h29C0QD7qb09G1rkk64yxxZxhqcEinpuiPbreO3NIP2TYxIm1SVmWM/QtkV9FMgGLU6x1mmlQ7jflfIUPgkPk9TsLoWfhiT6Ho8Vj1cFMQYTq25rZUgTldCr0K7zVmKcfvohpuqhPZl0yyPE+WU8TrrLp48unSmdc25t/FtQpduIt8Kdwheozt226gKv5Nl4PmtsoqpDT7JyJNnYlDaAfIbEEW1Dzmph/fqA/HgHEsojjPi0ubeYgachzMxJj47IkVNszuzaM7qBGWmlsAtF9z8VYWICEQp+3SeKoczzmScGThDcnaz4WBm/G8vdx55lSljTH9KDYhkpcwconNk3LgvvJ4igbTq6OUw20RHxwdwBEOce8kDF2ZV1eBbOhTFVLPzAU58CKBO2eC2H34N1sONF+JXr8DmTHGZQroxw21QB4MGlbjfmk3JSmdQYk6UfhpbQ1n3OKiXg8SGh6rZlW/nV25Vo90Sttd2vxjCckVHnCorLakmoQ1H5KCA+vTEzdjkQ6BbBvaMWUvnXkVpg4Keweu3JL6jr9U5MxtV+775YDh3RcPvy/+wAPSpmm6wpYRtkGA+Z3qITHGgyytOwPqN88Yuaju3vPtUonwb2heMnpJZIOhh+/Q1xoxN4XXSx2Tu0Zt8eudMWnfnxuaCl6QSNTuzyc9QH1YJfuvU5sfeP1WYUmtvAFuaj8JaeSGrEPSrtc4ue2Qzfo/jHslbSOZ0KkVJnzvSUbEPsr0HPEJnbq0Zxoq3so1J0reAMxH8g8/pX2HnHwum7aVX9a+UEVKyo8FOY1vEFhAo8gUSdiwHOHD4a3uR5qMcbw9y0bWxJvWHOkfs1unRACj812XMxFdb4cgvl9mrf+Ifo/BDTqj+Wn+mG9hdB5I50svCL3hViKzkLmJvRoDrgwBtXHrq538AXrAnemwEiy1mdXR0YzBITBozk9UtyN7P9OjmTY2kl6Lg5e/roBMqSVRPv4CBhQtPWiS4GvlLfqATkR+556NrN8CwWyKxM2nLfHxshaXC58oHhKPL0jmL2eAGI2EW9AHV33/+3hQG48pfA/bmRu760IBAJuRMUI3AMv1sQoVosOd2SLErrZwuIJAz+FgjxK1bE/Csv/ThlReYVNgm+0a/GkI8UQ22DASikREdrAhr1+VCJBe07CyWG/xTK5wAbi66ad5K/ijbYiy0CSrD6MuP8hCgEBdoJnvkELKIJLwTvDflxVWkzqzp3C/dqNOqkHM7wvHfF8lY4f5vgzBEY2ub3bxthfpsbpsEn0guQgVOn7oMk+ynAxXRX4lxkFCvpkniknF7TxsyymiedvAGiS2mLQqaPBXhajdXtaYeAdurtzKUNIleRoNP2NLwoybKDFsMCMGCSqGSIb3DQEJFTEWBBTLvNODNcPCh2QyBT555vli6Lh/gTBFBgkqhkiG9w0BCRQxOB42AFMAdQByAGcAZQAgAEcAZQBuAGUAcgBhAHQAZQBkACAAQwBBACAANgBGADAAQQA5ADEAMAA5MC0wITAJBgUrDgMCGgUABBSOM3Vt1+av7qp8slwad33QHBbSZAQI5TEmqbbdMD4=
 
 [Script]
-# 知乎免跳转
-zhihuX = type=http-response,pattern=^https://www\.zhihu\.com/(question|topic),requires-body=1,max-size=0,script-path=https://raw.githubusercontent.com/elecV2/QuantumultX-Tools/master/betterweb/zhihux.user.js,script-update-interval=0
-[SSID Setting]
-获取互助码 = type=cron,cronexp=20 13 * * 6,wake-system=1,timeout=3600,script-path=https://raw.githubusercontent.com/shufflewzc/faker2/main/jd_get_share_code.js,script-update-interval=0
 京东资产变动通知 = type=cron,cronexp=2 9 * * *,wake-system=1,timeout=3600,script-path=https://raw.githubusercontent.com/Tartarus2014/Script/master/jd_bean_change.js
 Boxjs恢复 = type=cron,cronexp=5 10 * * *,script-path=https://raw.githubusercontent.com/dompling/Script/master/gist/restore.js,script-update-interval=0
 Boxjs备份 = type=cron,cronexp=0 10 * * *,script-path=https://raw.githubusercontent.com/dompling/Script/master/gist/backup.js,script-update-interval=0
 Sub-Store 自动同步 = type=cron,cronexp=0 12 * * *,script-path=https://raw.githubusercontent.com/Peng-YM/Sub-Store/master/scripts/cron-sync-artifacts.js,script-update-interval=0
-
-[MITM]
-skip-server-cert-verify = true
-hostname = %APPEND% oia.zhihu.com, link.zhihu.com, www.zhihu.com, *.baidu.com, pan.baidu.com
 
 [WireGuard SHARE]
 private-key = yBzFxeDw+JKPSnJIEOlQp1nXb8aux+AFXJF2wPfYBWw=
@@ -257,5 +223,4 @@ self-ip = 172.16.0.254
 dns-server = 1.1.1.1
 mtu = 1420
 peer = (public-key = bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=, allowed-ips = 0.0.0.0/0, endpoint = 162.159.193.6:2408)
-
 
