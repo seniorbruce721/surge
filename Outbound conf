@@ -63,8 +63,8 @@ always-real-ip = *.msftconnecttest.com, *.msftncsi.com, *.srv.nintendo.net, *.st
 # > VIF Excluded Routes
 tun-excluded-routes = 239.255.255.250/32
 
-# 如果没有代理服务器支持 UDP 转发，可修改为「DIRECT」，但需注意同一目标主机名 TCP 请求与 UDP 请求的源地址不同所造成的隐私及安全风险。
-udp-policy-not-supported-behaviour = REJECT
+# 如果没有代理服务器支持 UDP 转发，可修改为「 direct 」或注释下条，但需注意同一目标主机名 TCP 请求与 UDP 请求的源地址不同所造成的隐私及安全风险。
+udp-policy-not-supported-behaviour = reject
 
 [Replica]
 # 0 为关闭，1 为开启
@@ -79,6 +79,7 @@ hide-udp = 0
 # keyword-filter-type = none
 # > 关键词
 # keyword-filter = (null)
+
 
 [Proxy]
 🌐Direct = direct
