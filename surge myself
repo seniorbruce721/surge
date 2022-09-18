@@ -1,342 +1,104 @@
-# 官方手册 - https://manual.nssurge.com/
-# 理解原理 - https://manual.nssurge.com/book/understanding-surge/cn/
-# 帮助中心 - https://nssurge.zendesk.com/
-# 技术社区 - https://community.nssurge.com
-
-
-# Self-use sgmodule:
-
-# New Advanced Settings & URL Redirect - https://raw.githubusercontent.com/TributePaulWalker/Profiles/main/Surge/Module/Surge_NewGeneral.sgmodule
-
-# Block Advertising for Surge iOS - https://raw.githubusercontent.com/DivineEngine/Profiles/master/Surge/Module/Block/Advertising.sgmodule
-
-# Block YouTube Advertising - https://raw.githubusercontent.com/DivineEngine/Profiles/master/Surge/Module/Block/YouTubeAds.sgmodule
-
-# AllInOne - https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rewrite/Surge/AllInOne/AllInOne.sgmodule
-
-# 复写去广告 - https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rewrite/Surge/Advertising/Advertising.sgmodule
-
-# 开屏去广告 - https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/script/startup/startup.sgmodule
-
-# Ad rewrite rules, By NobyDa - https://raw.githubusercontent.com/NobyDa/Script/master/Surge/Module/RewriteRules.sgmodule
-
-# Turn Off Google Safesearch(Beta) - https://raw.githubusercontent.com/DivineEngine/Profiles/master/Surge/Module/Turn-Off-Google-Safesearch.sgmodule
-
-# 解锁 Siri 建议与搜索 - https://raw.githubusercontent.com/VirgilClyne/iRingo/main/sgmodule/Siri_Suggestions_for_Proxy.sgmodule
-
-# 美标天气AQI - https://raw.githubusercontent.com/VirgilClyne/iRingo/main/sgmodule/Apple_Weather.sgmodule
-
-# 切换地图为美国 - https:/raw.githubusercontent.com/VirgilClyne/iRingo/main/sgmodule/Apple_Maps.sgmodule
-
-# Tartarus iOS Cookies Module - https://raw.githubusercontent.com/Tartarus2014/Surge-Script/master/Cookie.sgmodule
-
-# Tartarus iOS Tasks Module - https://raw.githubusercontent.com/Tartarus2014/Surge-Script/master/Task.sgmodule
-
-# Tartarus iOS Script Module - https://raw.githubusercontent.com/Tartarus2014/Surge-Script/master/Script.sgmodule
-
-# Fake_VIP - https://raw.githubusercontent.com/Tartarus2014/Surge-Script/master/Fake_Vip.sgmodule
-
-# 知乎助手Plus - https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/script/zhihu/zhihu_plus.sgmodule
-
-# GitHub Accelerate - https://raw.githubusercontent.com/Peng-YM/QuanX/master/Tools/GitHubAccelerate/surge.sgmodule
-
 [General]
-# Update-2021.12.28.08.53
-# 通用设置
-
-# > 增强版 Wi-Fi 助理
-# (在 Wi-Fi 网络不佳时尝试使用数据网络建立连接，请仅当使用不限量的数据流量时开启)
-wifi-assist = true
-
-# > Internet 测试 URL
-internet-test-url = http://wifi.vivo.com.cn/generate_204
-
-# > 代理测速 URL
-proxy-test-url = http://cp.cloudflare.com/generate_204
-
-# > 测试超时（秒）
-test-timeout = 3
-
-# > TLS 引擎
-tls-provider = openssl
-
-# > 自定义 GeoIP 数据库
-geoip-maxmind-url = https://raw.githubusercontent.com/Hackl0us/GeoIP2-CN/release/Country.mmdb
-# geoip-maxmind-url = https://raw.githubusercontent.com/Loyalsoldier/geoip/release/Country.mmdb
-
-# > 隐藏状态栏上的VPN图标
-hide-vpn-icon = true
-
-# > IPv6 支持（默认关闭）
-ipv6 = true
-
-# > HTTP-API
-# 依次为：密码，主机名，端口
-http-api = Brian@0.0.0.0:6171
-
-# > HTTP-API-TLS
-http-api-tls = false
-
-# > Web控制器
-# Safari输入127.0.0.1:6171,填入HTTP-API密码即可。
-http-api-web-dashboard = true
-
-# > 兼容模式 (仅 iOS)
-# compatibility-mode = 0
-
 # > 跳过代理
-skip-proxy = 127.0.0.1, 192.168.0.0/16, 10.0.0.0/8, 172.16.0.0/12, 100.64.0.0/10, localhost, *.local, passenger.t3go.cn
-
-# > 排除简单主机名
-exclude-simple-hostnames = true
-
-# > Network framwork
-# 启动 Network.framework 以开启用户态网络协议栈，可提高吞吐量，降低延迟并开启 MPTCP。（需手动重启 Surge) 实验性功能可能导致 Surge 不稳定，甚至引起系统崩溃。
-# > 默认开启：true ，可根据自己的需求选择关闭：false 。
-network-framework = true
-
-# > DNS 服务器
-dns-server = 119.29.29.29, system
-
-# > DNS over HTPPS (如无必要不建议使用 DNS over HTTPS)
-# doh-server = https://dns.alidns.com/dns-query
-
-# > 从 /etc/hosts 读取 DNS 记录
-read-etc-hosts = true
-
-# 高级设置
-# > 日志级别
-loglevel = warning
-
-# > 当遇到 REJECT 策略时返回错误页
-show-error-page-for-reject = true
-
+skip-proxy = 127.0.0.1, 192.168.0.0/16, 10.0.0.0/8, 172.16.0.0/12, 100.64.0.0/10, localhost, *.local, iosapps.itunes.apple.com
 # > Always Real IP Hosts
-always-real-ip = msftconnecttest.com, msftncsi.com, *.msftconnecttest.com, *.msftncsi.com, *.srv.nintendo.net, *.stun.playstation.net, xbox.*.microsoft.com, *.xboxlive.com, *.battlenet.com.cn, *.battlenet.com, *.blzstatic.cn, *.battle.net
-
-# Hijack DNS
-# hijack-dns = 8.8.8.8:53, 8.8.4.4:53
-
-# > TCP Force HTTP Hosts
-force-http-engine-hosts = *.ott.cibntv.net, 123.59.31.1,119.18.193.135, 122.14.246.33, 175.102.178.52, 116.253.24.*, 175.6.26.*, 220.169.153.*
-
-# > VIF Excluded Routes
-tun-excluded-routes = 239.255.255.250/32
-
-# > 路由防火墙
-# 包含所有的网络请求
-include-all-networks = false
-# 包含本地网络请求
-include-local-networks = false
-# 代理请求本地DNS映射
-use-local-host-item-for-proxy = false
-wifi-access-http-port = 6666
-allow-wifi-access = true
-
-[Replica]
-# 0 为关闭，1 为开启
-# > 隐藏 Apple 请求
-hide-apple-request = 0
-
-# > 隐藏崩溃追踪器请求
-hide-crash-reporter-request = 1
-
-# > 隐藏 UDP 会话
-hide-udp = 0
-
-# > 关键词过滤器
-# keyword-filter-type = none
-
-# > 关键词
-# keyword-filter = (null)
+always-real-ip = *.msftconnecttest.com, *.msftncsi.com, *.srv.nintendo.net, *.stun.playstation.net, xbox.*.microsoft.com, *.xboxlive.com, *.logon.battlenet.com.cn, *.logon.battle.net, stun.l.google.com
+# GeoIP 数据库
+geoip-maxmind-url = https://github.com/Hackl0us/GeoIP2-CN/raw/release/Country.mmdb
+# Internet 测试 URL
+internet-test-url = http://aliyun.com/
+# 代理测试 URL
+proxy-test-url = http://1.1.1.1/generate_204
+# 测试超时，单位，秒
+test-timeout = 5
+# 日志级别
+loglevel = notify
+# DoH server，标准的 url 格式，以‘,’分割多个地址
+doh-server = https://doh.pub/dns-query, https://dns.alidns.com/dns-query
+# 如果配置了 doh-server，则 dns-server 将仅用于测试连接性并解析 Doh URL 中的域名
+dns-server = 223.6.6.6
+# > 包含本地网络请求
+include-local-networks = true
+ipv6 = false
 
 [Proxy]
-直接连接 = direct
-拦截连接 = reject
+# > 别名策略+代理
+𝗗𝗜𝗥𝗘𝗖𝗧 = direct
+IPV6☁️warp = wireguard, section-name=C8314824, test-url=http://1.1.1.1/generatel_204
+IPV4☁️warp = wireguard, section-name=096643BG, test-url=http://1.1.1.1/generate_204
 
 [Proxy Group]
-国外流量 = select, 直接连接, 香港, 台湾, 美国, 日本, 韩国, 新加坡, 全部节点
+# > 自定义策略
+Flower = select, policy-path=https://api.huacloud.xyz/sub?target=surge&ver=4&list=true&emoji=true&tfo=true&udp=true&url=https%3A%2F%2Fapi.flowercloud.xyz%2Fosubscribe.php%3Fsid%3D13937%26token%3DGsUqGZZoZiCL%26sip002%3D1, update-interval=3600, no-alert=0, hidden=0, include-all-proxies=0, policy-regex-filter=Traffic|Expire
+𝗣𝗥𝗢𝗫𝗬 = select, 𝗔𝗨𝗧𝗢 ✰, 𝗛𝗼𝗻𝗴 𝗞𝗼𝗻𝗴, 𝗧𝗮𝗶𝘄𝗮𝗻, 𝗦𝗶𝗻𝗴𝗮𝗽𝗼𝗿𝗲, 𝗝𝗮𝗽𝗮𝗻, 𝗨𝗻𝗶𝘁𝗲𝗱 𝗦𝘁𝗮𝘁𝗲𝘀, 𝗞𝗼𝗿𝗲𝗮, Outbound, IPV6☁️warp, IPV4☁️warp
+𝗧𝗲𝗹𝗲𝗴𝗿𝗮𝗺 = select, 𝗧𝗮𝗶𝘄𝗮𝗻, 𝗦𝗶𝗻𝗴𝗮𝗽𝗼𝗿𝗲, 𝗨𝗻𝗶𝘁𝗲𝗱 𝗦𝘁𝗮𝘁𝗲𝘀, IPV6☁️warp, IPV4☁️warp
+𝗦𝘁𝗿𝗲𝗮𝗺𝗶𝗻𝗴 = select, include-other-group="𝗦𝗶𝗻𝗴𝗮𝗽𝗼𝗿𝗲, 𝗛𝗼𝗻𝗴 𝗞𝗼𝗻𝗴, 𝗧𝗮𝗶𝘄𝗮𝗻", update-interval=43200, no-alert=0, hidden=0, include-all-proxies=0
+𝗔𝗨𝗧𝗢 ✰ = url-test, include-other-group="𝗛𝗼𝗻𝗴 𝗞𝗼𝗻𝗴, 𝗦𝗶𝗻𝗴𝗮𝗽𝗼𝗿𝗲", update-interval=43200, no-alert=0, hidden=1, include-all-proxies=0
+𝗛𝗼𝗻𝗴 𝗞𝗼𝗻𝗴 = fallback, policy-regex-filter=港|HK|Hong|hk|🇭🇰, update-interval=43200, no-alert=0, hidden=1, include-all-proxies=0, include-other-group=Outbound
+𝗧𝗮𝗶𝘄𝗮𝗻 = fallback, policy-regex-filter=湾|TW|Taiwan|tw, update-interval=43200, no-alert=0, hidden=1, include-all-proxies=0, include-other-group=Outbound
+𝗦𝗶𝗻𝗴𝗮𝗽𝗼𝗿𝗲 = fallback, policy-regex-filter=坡|SG|🇸🇬|Singapore, update-interval=43200, no-alert=0, hidden=1, include-all-proxies=0, include-other-group=Outbound
+𝗝𝗮𝗽𝗮𝗻 = fallback, policy-regex-filter=日|JP|Japan|🇯🇵, update-interval=43200, no-alert=0, hidden=1, include-all-proxies=0, include-other-group=Outbound
+𝗨𝗻𝗶𝘁𝗲𝗱 𝗦𝘁𝗮𝘁𝗲𝘀 = fallback, policy-regex-filter=美|US|🇺🇸, update-interval=43200, no-alert=0, hidden=1, include-all-proxies=0, include-other-group=Outbound
+𝗞𝗼𝗿𝗲𝗮 = fallback, policy-regex-filter=韩国, update-interval=43200, no-alert=0, hidden=1, include-all-proxies=0, include-other-group=Outbound
+𝗢𝘁𝗵𝗲𝗿 = select, policy-regex-filter=^((?!港|HK|Hong|hk|🇭🇰 |湾|TW|Taiwan|tw |坡|SG|🇸🇬|Singapore|日|JP|Japan|🇯🇵|美|US|🇺🇸 ).)*$, update-interval=43200, no-alert=0, hidden=1, include-all-proxies=0, include-other-group=Outbound
+Outbound = select, update-interval=43200, no-alert=0, hidden=0, include-all-proxies=0, policy-path=https://api.huacloud.xyz/sub?target=surge&ver=4&list=true&emoji=true&tfo=true&udp=true&url=https%3A%2F%2Fapi.flowercloud.xyz%2Fosubscribe.php%3Fsid%3D13937%26token%3DGsUqGZZoZiCL%26sip002%3D1
+# Speedtest
+𝗦𝗽𝗲𝗲𝗱𝘁𝗲𝘀𝘁 = select, include-other-group="𝗛𝗼𝗻𝗴 𝗞𝗼𝗻𝗴, 𝗧𝗮𝗶𝘄𝗮𝗻, 𝗦𝗶𝗻𝗴𝗮𝗽𝗼𝗿𝗲, 𝗝𝗮𝗽𝗮𝗻, 𝗨𝗻𝗶𝘁𝗲𝗱 𝗦𝘁𝗮𝘁𝗲𝘀, 𝗞𝗼𝗿𝗲𝗮, 𝗢𝘁𝗵𝗲𝗿, Outbound", update-interval=43200, no-alert=0, hidden=0, include-all-proxies=0
+𝗔𝗽𝗽𝗹𝗲 = select, 𝗗𝗜𝗥𝗘𝗖𝗧, 𝗣𝗥𝗢𝗫𝗬, no-alert=0, hidden=0, include-all-proxies=0
+# YouTube
+Experiment = select, policy-regex-filter=实验性, no-alert=0, hidden=0, include-all-proxies=0, include-other-group=Outbound
 
-国内流量 = select, 直接连接, 国外流量
-
-广告拦截 = select, 拦截连接, 直接连接
-
-Apple = select, 直接连接, 国外流量
-
-WeChat = select, 直接连接, 香港, 台湾, 美国, 日本, 韩国, 新加坡, 全部节点
-
-Twitter = select, 香港, 台湾, 美国, 日本, 韩国, 新加坡, 全部节点
-
-Telegram = select, 香港, 新加坡, 美国, 全部节点
-
-Netflix = select, 香港, 台湾, 美国, 日本, 韩国, 新加坡, 全部节点
-
-YouTube = select, 香港, 台湾, 美国, 日本, 韩国, 新加坡, 全部节点
-
-Disney = select, 香港, 台湾, 美国, 日本, 韩国, 新加坡, 全部节点
-
-Tiktok = select, 香港, 台湾, 美国, 日本, 韩国, 新加坡, 全部节点
-
-Bilibili = select, 直接连接, 香港, 台湾
-
-其他媒体 = select, 香港, 台湾, 美国, 日本, 韩国, 新加坡, 全部节点
-
-其他流量 = select, 直接连接, 国外流量
-
-香港 = select, update-interval=-1, policy-regex-filter=(?=.*(港|HK|(?i)Hong))^((?!(台湾|日本|新加坡|美国|韩国|狮城|US|SG|JP|KR|TW|台灣|美國|韓國|獅城)).)*$, no-alert=0, hidden=0, policy-path=你的节点list订阅地址
-
-台湾 = select, update-interval=-1, policy-regex-filter=(?=.*(台|TW|(?i)Taiwan))^((?!(香港|台湾|日本|新加坡|美国|韩国|狮城|US|SG|JP|KR|HK|美國|韓國)).)*$, no-alert=0, hidden=0, policy-path=你的节点list订阅地址
-
-美国 = select, update-interval=-1, policy-regex-filter=(?=.*(美国|美國|US|洛杉矶|西雅图|圣荷西|(?i)States|American))^((?!(香港|台湾|日本|新加坡|韩国|狮城|SG|JP|KR|HK|TW|台灣|韓國|獅城)).)*$, no-alert=0, hidden=0, policy-path=你的节点list订阅地址
-
-日本 = select, update-interval=-1, policy-regex-filter=(?=.*(日本|JP|东京|(?i)Japan))^((?!(香港|台湾|新加坡|美国|韩国|狮城|US|SG|KR|HK|TW|台灣|美國|韓國|獅城)).)*$, no-alert=0, hidden=0, policy-path=你的节点list订阅地址
-
-韩国 = select, update-interval=-1, policy-regex-filter=(?=.*(韩国|韓國|Korea|KR|首尔))^((?!(香港|台湾|日本|美国|US|JP|HK|TW|台灣|美國)).)*$, no-alert=0, hidden=0, policy-path=你的节点list订阅地址
-
-新加坡 = select, update-interval=-1, policy-regex-filter=(?=.*(新加坡|狮城|SG|(?i)Singapore))^((?!(香港|台湾|日本|美国|韩国|US|JP|KR|HK|TW|台灣|美國|韓國)).)*$, no-alert=0, hidden=0, policy-path=你的节点list订阅地址
-
-全部节点 = select, policy-path=￼你的节点list订阅地址
 
 [Rule]
-# 屏蔽HTTP3/QUIC协议
-AND,((PROTOCOL,UDP), (DEST-PORT,443)),REJECT-NO-DROP
 
-# 屏蔽YouTube的UDP
-AND,((PROTOCOL,UDP), (DOMAIN-SUFFIX,googlevideo.com)),REJECT-NO-DROP
-
-# 屏蔽 iOS 系统更新（如需屏蔽iOS系统更新请自行注释掉 “#" 即可生效）
-#DOMAIN,mesu.apple.com,拦截连接
-#DOMAIN,gdmf.apple.com,拦截连接
-#DOMAIN,updates-http.cdn-apple.com,拦截连接
-#DOMAIN,xp.apple.com,拦截连接
-
-# 后续规则修正
-RULE-SET,https://raw.githubusercontent.com/DivineEngine/Profiles/master/Surge/Ruleset/Unbreak.list,直接连接
-
-# 广告拦截
-DOMAIN-SET,https://raw.githubusercontent.com/NobyDa/ND-AD/master/Surge/AD_Block.txt,广告拦截
-
-RULE-SET,https://raw.githubusercontent.com/NobyDa/ND-AD/master/Surge/AD_Block_Add.txt,广告拦截
-
-DOMAIN-SET,https://raw.githubusercontent.com/NobyDa/ND-AD/master/Surge/AD_Block_Plus.txt,广告拦截
-
-DOMAIN-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Surge/Advertising/Advertising_Domain.list,广告拦截
-
-RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Surge/Advertising/Advertising.list,广告拦截
-
-RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Surge/AdvertisingLite/AdvertisingLite.list,广告拦截
-
-RULE-SET,https://raw.githubusercontent.com/DivineEngine/Profiles/master/Surge/Ruleset/Guard/Advertising.list,广告拦截
-
-DOMAIN-SET,https://raw.githubusercontent.com/DivineEngine/Profiles/master/Surge/Ruleset/Guard/AdvertisingPlus.list,广告拦截
-
-DOMAIN-SET,https://raw.githubusercontent.com/privacy-protection-tools/anti-AD/master/anti-ad-surge2.txt,广告拦截
-
-RULE-SET,https://raw.githubusercontent.com/Loyalsoldier/surge-rules/release/reject.txt,广告拦截
-
-RULE-SET,https://raw.githubusercontent.com/lhie1/Rules/master/Surge/Surge%203/Provider/Reject.list,广告拦截
-
-RULE-SET,https://raw.githubusercontent.com/eHpo1/Rules/master/Surge4/Ruleset/Liby.list,广告拦截
-
-RULE-SET,https://raw.githubusercontent.com/Hvftk/eHpo1/master/Surge4/Ruleset/Tide.list,广告拦截
-
-# 隐私保护
-RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Surge/Privacy/Privacy.list,拦截连接
-
-# 应用内追踪
-DOMAIN-SET,https://raw.githubusercontent.com/mieqq/mieqq/master/In-AppTracker.txt,拦截连接
-
-# 运营商劫持或恶意网站
-RULE-SET,https://raw.githubusercontent.com/DivineEngine/Profiles/master/Surge/Ruleset/Guard/Hijacking.list,拦截连接
-
-# WeChat
-# 此规则仅针对WeChat绑定Google Voice的用户。+86、港、澳、台用户可直接Direct。
-RULE-SET,https://raw.githubusercontent.com/DivineEngine/Profiles/master/Surge/Ruleset/Extra/WeChat/WeChatSG.list,WeChat
-
-# Twitter
-DOMAIN-SUFFIX,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/release/rule/Surge/Twitter/Twitter.list,Twitter
-
-# Telegram服务
-RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Surge/TelegramSG/TelegramSG.list,新加坡
-
-RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Surge/TelegramUS/TelegramUS.list,美国
-
-RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/release/rule/Surge/Telegram/Telegram.list,Telegram
-
-# Apple服务
-RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Surge/Apple/Apple.list,Apple
-
-# Netflix服务
-RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Surge/Netflix/Netflix.list,Netflix
-
-# YouTube服务
-RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Surge/YouTube/YouTube.list,YouTube
-
-# Disney服务
-RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Surge/Disney/Disney.list,Disney
-
-# Tiktok
-RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/release/rule/Surge/TikTok/TikTok.list,Tiktok
-
-# 哔哩哔哩服务
-RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Surge/BiliBili/BiliBili.list,Bilibili
-
-# 国际流媒体服务
-RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Surge/GlobalMax/GlobalMax.list,其他媒体
-
-# 全球加速
-RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/release/rule/Surge/GlobalMax/GlobalMax.list,国外流量
-
-# 网络信息检测
-DOMAIN,ip-api.com,国外流量
-
-# 中国直连
-RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/release/rule/Surge/ChinaMax/ChinaMax.list,国内流量
-
-# Local Area Network 局域网
-RULE-SET,LAN,直接连接
-
-# 其他流量
-FINAL,其他流量,dns-failed
-
-[Host]
-# Firebase Cloud Messaging
-mtalk.google.com = 108.177.125.188
-
-# Google Dl
-dl.google.com = server:119.29.29.29
-dl.l.google.com = server:119.29.29.29
-
-# TP-Link
-tplogin.cn = server:syslib
-tplinklogin.net = server:syslib
-melogin.cn = server:syslib
-falogin.cn = server:syslib
-
-# Apple TestFlight
-*testflight.apple.com = server:8.8.4.4
-
-# 解锁了「模块」功能的用户可以使用 General.sgmodule 后可移除 [URL Rewrite] 及 [MITM] 的「hostname = www.google.cn,api.abema.io」部分
-# 建议使用 General.sgmodule，其他 .sgmodule 按需加入
-# 未解锁「模块」功能的用户不要删除以下内容，参照说明(https://github.com/DivineEngine/Profiles/tree/master/Surge)使用快捷指令更新相关内容。
-
-[URL Rewrite]
-# 阻止google.com 跳转到google.com.hk
-^https?:\/\/(www\.)?g\.cn https://www.google.com/ncr 302
-^https?:\/\/(www\.)?google\.cn https://www.google.com/ncr 302
-
-[Script]
-# 百度搜索防跳转
-百度搜索防跳转 = type=http-response,pattern=^https?\:\/\/boxer\.baidu\.com\/scheme,script-path=https://raw.githubusercontent.com/app2smile/rules/master/js/baidu-no-redirect.js
-
-# Boxjs
-Rewrite: BoxJs = type=http-request,pattern=^https?://boxjs.com,script-path=https://raw.githubusercontent.com/chavyleung/scripts/master/chavy.box.js, requires-body=true, timeout=120
-
-# Sub-Store
-Sub-Store = type=http-request,pattern=^https?:\/\/sub\.store,script-path=https://raw.githubusercontent.com/Peng-YM/Sub-Store/master/backend/sub-store.min.js,requires-body=true,timeout=120,max-size=131072
+# ################ Local Rule
+DOMAIN-SUFFIX,githubusercontent.com,Global Proxy
+DOMAIN-SUFFIX,github.com,Global Proxy
+DOMAIN-SUFFIX,vercel.app,Global Proxy
+# ################ AD Block
+RULE-SET,https://github.com/blackmatrix7/ios_rule_script/blob/master/rule/Surge/Advertising/Advertising.list?raw=true,AD Block
+# ################ Special App
+# > Apple
+RULE-SET,https://github.com/blackmatrix7/ios_rule_script/blob/master/rule/Surge/Apple/Apple.list?raw=true,𝗔𝗽𝗽𝗹𝗲
+# > Speedtest
+RULE-SET,https://github.com/blackmatrix7/ios_rule_script/blob/master/rule/Surge/Speedtest/Speedtest.list?raw=true,𝗦𝗽𝗲𝗲𝗱𝘁𝗲𝘀𝘁
+# ################ > Global Proxy
+# > Google
+RULE-SET,https://github.com/blackmatrix7/ios_rule_script/blob/master/rule/Surge/Google/Google.list?raw=true,𝗣𝗥𝗢𝗫𝗬
+# > Youtube
+RULE-SET,https://github.com/blackmatrix7/ios_rule_script/blob/master/rule/Surge/YouTube/YouTube.list?raw=true,𝗣𝗥𝗢𝗫𝗬
+# > GitHub
+RULE-SET,https://github.com/blackmatrix7/ios_rule_script/blob/master/rule/Surge/GitHub/GitHub.list?raw=true,𝗣𝗥𝗢𝗫𝗬
+# > Telegram
+RULE-SET,https://github.com/VirgilClyne/GetSomeFries/blob/main/ruleset/ASN.Telegram.list?raw=true,𝗧𝗲𝗹𝗲𝗴𝗿𝗮𝗺
+# ######## > Proxy
+RULE-SET,https://github.com/blackmatrix7/ios_rule_script/blob/master/rule/Surge/Proxy/Proxy.list?raw=true,𝗣𝗥𝗢𝗫𝗬
+# ################ > Global Direct
+# > China ASN
+RULE-SET,https://github.com/VirgilClyne/GetSomeFries/blob/main/ruleset/ASN.China.list?raw=true,𝗗𝗜𝗥𝗘𝗖𝗧
+# ######## > GEOIP CN
+GEOIP,CN,Global Direct
+# ######## > LAN
+RULE-SET,LAN,DIRECT
+# ################ > Final
+FINAL,Final
 
 [MITM]
 skip-server-cert-verify = true
-hostname = duckduckgo.com, sub.store, boxer.baidu.com, api.weibo.cn, mapi.weibo.com, *.uve.weibo.com, -*.weibo.com, mp.weixin.qq.com, security.wechat.com, weixin110.qq.com, vip1.kuwo.cn, testflight.apple.com, pan.baidu.com, weather-data.apple.com
-ca-passphrase = RAYCNS
-ca-p12 = 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
+# 不开启 tcp-connection，Sub-Store 将无法使用
+tcp-connection = true
+
+[WireGuard 096643BG]
+private-key = yBzFxeDw+JKPSnJIEOlQp1nXb8aux+AFXJF2wPfYBWw=
+self-ip = 172.16.0.253
+dns-server = 1.1.1.1
+mtu = 1420
+peer = (public-key = bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=, allowed-ips = "0.0.0.0/0, ::/0", endpoint = 162.159.193.10:2408, keepalive = 45)
+
+[WireGuard C8314824]
+private-key = MICg08o65dBTh2L6hVf5j/MNqWrie+garAPIICGCvXA=
+self-ip = 172.16.0.2
+self-ip-v6 = 2606:4700:110:8083:6145:5fc7:7598:63bc
+dns-server = 162.159.36.1, 2606:4700:4700::1111
+mtu = 1320
+peer = (public-key = bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=, allowed-ips = "0.0.0.0/0, ::/0", endpoint = engage.nanocat.me:2408, keepalive = 30)
