@@ -1,218 +1,141 @@
 [General]
-# 日志等级 warning, notify, info, verbose (默认: notify)
-loglevel = notify
-# 网络诊断
+# 通用设置
+
+# > 增强版 Wi-Fi 助理
+# (在 Wi-Fi 网络不佳时尝试使用数据网络建立连接，请仅当使用不限量的数据流量时开启)
+wifi-assist = false
+
 # > Internet 测试 URL
-internet-test-url = http://bing.com
+internet-test-url = http://taobao.com/
 # > 代理测速 URL
-proxy-test-url = http://www.gstatic.com/generate_204
-# > 测速超时 (s)
+proxy-test-url = http://www.apple.com/
+# > 测试超时（秒）
 test-timeout = 2
-# IPv6 支持
-ipv6 = false
-# Wi-Fi 访问
-allow-wifi-access = true
-# > HTTP 代理服务端口（默认 "6152"）
-# wifi-access-http-port = 6152
-# > SOCKS5 代理服务端口（默认 "6153"）
-# wifi-access-socks5-port = 6153
-# 外部控制器
-# 兼容性
-# > 兼容模式（默认 "禁用"）
-# compatibility-mode = 0
-# > 跳过某个域名或者IP段
-skip-proxy = 192.168.0.0/16, 193.168.0.0/24, 10.0.0.0/8, 172.16.0.0/12, 100.64.0.0/10, 17.0.0.0/8, 127.0.0.1, localhost, *.local
-# 实验性支持
-# > TLS Provider: default, secure-transport, network-framework, openssl (默认: default)
-tls-provider = default
-# > 启动 Network.framework（默认不启用）
-network-framework = false
-# 其他（请先阅读手册，除非你明确知道其含义，否则不要修改任何设置）
-# > Show Reject Error Page
-show-error-page-for-reject = true
-# > Hijack DNS
-# hijack-dns =
-# > TCP Force HTTP Hosts
-# force-http-engine-hosts = example.com:80
-# > VIF Excluded Routes
-tun-excluded-routes = 192.168.0.0/16, 10.0.0.0/8, 172.16.0.0/12
-# > VIF Included Routes
-tun-included-routes = 192.168.1.12/32
-# DNS 服务器
-dns-server = 119.29.29.29, 223.5.5.5, system
+
+# > 允许 Wi-Fi 访问 (仅 iOS，若允许远程访问将「false」改为「true」)
+allow-wifi-access = false
 wifi-access-http-port = 6152
-http-api = 123@0.0.0.0:6171
-geoip-maxmind-url = https://github.com/Hackl0us/GeoIP2-CN/raw/release/Country.mmdb
-http-api-tls = false
-http-api-web-dashboard = false
+wifi-access-socks5-port = 6153
+# > 允许 Wi-Fi 访问 (仅 macOS，若允许远程访问将「127.0.0.1」改为「0.0.0.0」)
+http-listen = 127.0.0.1:6152
+socks5-listen = 127.0.0.1:6153
+
+# > 跳过代理
+skip-proxy = 192.168.0.0/24, 10.0.0.0/8, 172.16.0.0/12, 127.0.0.1, localhost, *.local
+# > 排除简单主机名
+exclude-simple-hostnames = true
+
+# > Network framwork
+network-framework = false
+
+# > DNS 服务器 (如无必要不建议使用 DNS over HTTPS)
+dns-server = 223.5.5.5, 114.114.114.114
+# > 从 /etc/hosts 读取 DNS 记录
+read-etc-hosts = true
+
+# 高级设置
+
+# > 日志级别
+loglevel = notify
+
+# > 当遇到 REJECT 策略时返回错误页
+show-error-page-for-reject = true
+
+# > Always Real IP Hosts
+always-real-ip = *.msftconnecttest.com, *.msftncsi.com, *.srv.nintendo.net, *.stun.playstation.net, xbox.*.microsoft.com, *.xboxlive.com, *.logon.battlenet.com.cn, *.logon.battle.net, stun.l.google.com
+
+# > VIF Excluded Routes
+tun-excluded-routes = 239.255.255.250/32
+
+# 如果没有代理服务器支持 UDP 转发，可修改为「 direct 」或注释下条，但需注意同一目标主机名 TCP 请求与 UDP 请求的源地址不同所造成的隐私及安全风险。
+udp-policy-not-supported-behaviour = reject
 
 [Replica]
-# [抓取流量] => 过滤器
+# 0 为关闭，1 为开启
 # > 隐藏 Apple 请求
-hide-apple-request = 1
-# > 隐藏 Crashlytics 请求
-hide-crashlytics-request = true
+hide-apple-request = 0
+# > 隐藏崩溃追踪器请求
+hide-crash-reporter-request = 1
 # > 隐藏 UDP 会话
 hide-udp = 0
 # > 关键词过滤器
-keyword-filter-type = none
-keyword-filter = icloud, ocsp, logs, analytic, imap, adthor, applovin, appnext, talk, dropbox, github, spys, 149.154, 91.108
-hide-crash-reporter-request = 1
+# none（关闭关键词过滤器） / whitelist（blacklist（仅记录包含关键字的请求）） / blacklist（仅记录不包含关键字的请求） / pattern（匹配通配符的请求）
+# keyword-filter-type = none
+# > 关键词
+# keyword-filter = (null)
 
 [Proxy]
-国内直连 = direct
+Direct = direct
 Reject = reject
-Reject-Tinygif = reject-tinygif
 
 [Proxy Group]
-节点代理 = select, 延迟切换, 负载均衡, 手动选择, 可用切换, no-alert=0, hidden=1
-手动选择 = select, 香港节点, 美国节点, 狮城节点, 日本节点, update-interval=0, ((((policy-regex-filter=?!.*(NF)).*(美国)|(香港)).*IEPL)|广移)|长联, (((((policy-regex-filter=?!.*(NF)).*(美国)|(香港)).*IEPL)|广移)|杭联)|长联, (policy-regex-filter=?!.*(NF)).*((印度)|(韩国)|(狮城)|(日本)|(美国)|(香港)).*((IEPL)|(广移)|(杭联)|(长联)), no-alert=0, hidden=1
-负载均衡 = load-balance, persistent=1, timeout=0.4, interval=0, tolerance=50, policy-path=https://sub.store/download/PanDa-LoadBalance, update-interval=0, no-alert=0, hidden=1
-延迟切换 = url-test, policy-path=https://sub.store/download/PanDa-UrlTest, update-interval=0, timeout=0.4, interval=600, tolerance=50, no-alert=0, hidden=1
-可用切换 = fallback, policy-path=https://sub.store/download/Fallback-TomLink-HK, update-interval=0, ((policy-regex-filter=?!.*((直连)|(AGA) |(NF))).*(香港)).*(广移), timeout=0.4, interval=600, (policy-regex-filter=?!.*((直连)|(AGA) |(NF))).*((香港)).*((广移)), no-alert=0, hidden=1
-全球加速 = select, 节点代理, 手动选择, 可用切换, 负载均衡, 延迟切换, no-alert=0, hidden=1
-国际媒体 = select, 节点代理, 手动选择, 延迟切换, 负载均衡, 可用切换, no-alert=0, hidden=1
-推特趋势 = select, 节点代理, 香港节点, 狮城节点, no-alert=0, hidden=1
-声田音乐 = select, 节点代理, 国内直连, update-interval=0, hidden=1, no-alert=0
-黑白名单 = select, 负载均衡, 国内直连, hidden=1, no-alert=0
-香港节点 = fallback, policy-path=https://sub.store/download/collection/ALL, update-interval=0, (policy-regex-filter=?!.*((直连)|(AGA) |(NF))).*((香港)), timeout=0.4, interval=600, policy-regex-filter=港, no-alert=0, hidden=1
-美国节点 = url-test, policy-path=https://sub.store/download/collection/ALL, update-interval=0, policy-regex-filter=美国, timeout=5, interval=600, tolerance=50, no-alert=0, hidden=1
-狮城节点 = fallback, policy-path=https://sub.store/download/collection/ALL, update-interval=0, policy-regex-filter=(新加坡)|(狮城), no-alert=0, hidden=1
-日本节点 = fallback, policy-path=https://sub.store/download/collection/ALL, update-interval=0, policy-regex-filter=日本, no-alert=0, hidden=1
-测试机场 = fallback, DIRECT, no-alert=1, hidden=1
+Proxy = select, AUTO ✰,Hong Kong , Taiwan, Singapore, Japan, United States, Other, Outbound, no-alert=0, hidden=0, include-all-proxies=0
+Telegram = select, Singapore, United States, no-alert=0, hidden=0, include-all-proxies=0
+Streaming = select, include-other-group="Singapore, Hong Kong, Taiwan", update-interval=43200, no-alert=0, hidden=0, include-all-proxies=0
+StreamingSE = select, Direct
+Guard = select, Reject, Direct
+Speedtest = select, WARP, include-other-group="Hong Kong, Taiwan, Singapore, Japan, United States, Other", update-interval=43200, no-alert=0, hidden=0, include-all-proxies=0
+Outbound = select, update-interval=43200, no-alert=0, hidden=0, include-all-proxies=0, policy-path=https://api.prprcloud.life/node-list/6605/3rDRpfqqnQ/
+Apple = select, 𝗗𝗜𝗥𝗘𝗖𝗧, 𝗣𝗥𝗢𝗫𝗬, no-alert=0, hidden=0, include-all-proxies=0
+AUTO ✰ = url-test, include-other-group="Hong Kong, Singapore", update-interval=43200, no-alert=0, hidden=1, include-all-proxies=1
+Hong Kong = fallback, policy-regex-filter=港|HK|Hong|hk|🇭🇰, update-interval=43200, no-alert=0, hidden=1, include-all-proxies=0, include-other-group=Outbound
+Taiwan = fallback, policy-regex-filter=湾|TW|Taiwan|tw, update-interval=43200, no-alert=0, hidden=1, include-all-proxies=0, include-other-group=Outbound
+Singapore = fallback, policy-regex-filter=坡|SG|🇸🇬|Singapore, update-interval=43200, no-alert=0, hidden=1, include-all-proxies=0, include-other-group=Outbound
+Japan = fallback, policy-regex-filter=日|JP|Japan|🇯🇵, update-interval=43200, no-alert=0, hidden=1, include-all-proxies=0, include-other-group=Outbound
+United States = fallback, policy-regex-filter=美|US|🇺🇸, update-interval=43200, no-alert=0, hidden=1, include-all-proxies=0, include-other-group=Outbound
+Other = select, policy-regex-filter=^((?!港|HK|Hong|hk|🇭🇰 |湾|TW|Taiwan|tw |坡|SG|🇸🇬|Singapore|日|JP|Japan|🇯🇵|美|US|🇺🇸 ).)*$, update-interval=43200, no-alert=0, hidden=1, include-all-proxies=0, include-other-group=Outbound
 
 [Rule]
-DOMAIN-SUFFIX,mxwljsq.com,节点代理
-DOMAIN-SUFFIX,ip-api.com,节点代理
-DOMAIN-SUFFIX,galben.xyz,节点代理
-DOMAIN-KEYWORD,sub-store,节点代理
-DOMAIN-SUFFIX,feedly.com,节点代理
-DOMAIN-KEYWORD,rsshub.app,全球加速
-DOMAIN-KEYWORD,scriptables.net,全球加速
-DOMAIN-KEYWORD,nssurge.com,全球加速
-DOMAIN-KEYWORD,notion.so,全球加速
-# 机场规则
-DOMAIN-KEYWORD,skicat.io,全球加速
-DOMAIN-KEYWORD,riotgame,手动选择
-DOMAIN-KEYWORD,tomlink,全球加速
-# Black规则
-# Unbreak 神机后续规则修正
-RULE-SET,https://raw.githubusercontent.com/DivineEngine/Profiles/master/Surge/Ruleset/Unbreak.list,DIRECT
-# Advertising 广告
-RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Surge/Advertising/Advertising.list,REJECT
-# Hijacking 运营商劫持或恶意网站
-RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Surge/Hijacking/Hijacking.list,REJECT
-# TikTok
-RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Surge/TikTok/TikTok.list,狮城节点
-# 谷歌云盘
-RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Surge/GoogleDrive/GoogleDrive.list,国际媒体
-# Telegram
-RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Surge/Telegram/Telegram.list,全球加速
-# Instagram
-RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Surge/Instagram/Instagram.list,全球加速
-# Speedtest
-RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Surge/Speedtest/Speedtest.list,手动选择
-# Pornhub
-RULE-SET,https://raw.githubusercontent.com/DivineEngine/Profiles/master/Surge/Ruleset/StreamingMedia/Video/Pornhub.list,国际媒体
-# GlobalMedia 国际流媒体服务
-RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Surge/Netflix/Netflix.list,国际媒体
-RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Surge/Spotify/Spotify.list,声田音乐
-RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Surge/GlobalMedia/GlobalMedia.list,国际媒体
-# Twitter
-RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Surge/Twitter/Twitter.list,推特趋势
-# Global 全球加速
-RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Surge/Global/Global.list,全球加速
-# Apple 服务
-RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Surge/TestFlight/TestFlight.list,全球加速
-RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Surge/Apple/Apple.list,DIRECT
-# China 中国直连
-RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Surge/China/China.list,DIRECT
-# Local Area Network 局域网
-RULE-SET,LAN,DIRECT
-# 使用ChinaIP 以解决数据不准确的问题，使用 ChinaIP.list 时禁用「GEOIP,CN」规则
-# GeoIP China(若启用，则禁用 ChinaIP.list)
-GEOIP,CN,DIRECT
-FINAL,黑白名单,dns-failed
+# Unbreak 后续规则修正
+RULE-SET,https://raw.githubusercontent.com/DivineEngine/Profiles/master/Surge/Ruleset/Unbreak.list,Direct
 
-[Host]
-# CUSTOM DNS
-*.taobao.com = server:223.5.5.5
-*.tmall.com = server:223.5.5.5
-*.jd.com = server:119.28.28.28
-*.qq.com = server:119.28.28.28
-*.tencent.com = server:119.28.28.28
-*.alicdn.com = server:223.5.5.5
-*.aliyun.com = server:223.5.5.5
-*.weixin.com = server:119.28.28.28
-*.163.com = server:119.29.29.29
-*.126.com = server:119.29.29.29
-*.126.net = server:119.29.29.29
-*.127.net = server:119.29.29.29
-*.netease.com = server:119.29.29.29
-*.mi.com = server:119.29.29.29
-*.xiaomi.com = server:119.29.29.29
-*.bilibili.com = server:119.29.29.29
-cdn.pcbeta.attachment.inimc.com = 120.52.19.113
-cdn.pcbeta.css.inimc.com = 120.52.19.113
-cdn.pcbeta.static.inimc.com = 120.52.19.113
+# Advertising 广告
+RULE-SET,https://raw.githubusercontent.com/DivineEngine/Profiles/master/Surge/Ruleset/Guard/Advertising.list,Guard
+DOMAIN-SET,https://raw.githubusercontent.com/DivineEngine/Profiles/master/Surge/Ruleset/Guard/AdvertisingPlus.list,Guard
+
+# Privacy 隐私
+# RULE-SET,https://raw.githubusercontent.com/DivineEngine/Profiles/master/Surge/Ruleset/Guard/Privacy.list,Guard
+
+# Hijacking 运营商劫持或恶意网站
+RULE-SET,https://raw.githubusercontent.com/DivineEngine/Profiles/master/Surge/Ruleset/Guard/Hijacking.list,🛡Guard
+
+RULE-SET,https://github.com/Blankwonder/surge-list/raw/master/blocked.list,Proxy
+RULE-SET,https://github.com/Blankwonder/surge-list/raw/master/cn.list,Direct
+DOMAIN-SUFFIX,cn,Direct
+DOMAIN,apps.apple.com,Proxy
+DOMAIN-SUFFIX,ls.apple.com,Direct // Apple Maps
+DOMAIN-SUFFIX,store.apple.com,Direct // Apple Store Online
+RULE-SET,SYSTEM,Proxy
+RULE-SET,https://github.com/Blankwonder/surge-list/raw/master/apple.list,Proxy
+
+# Disney+
+ RULE-SET,https://raw.githubusercontent.com/DivineEngine/Profiles/master/Surge/Ruleset/StreamingMedia/Video/DisneyPlus.list,Streaming
+# Netflix
+ RULE-SET,https://raw.githubusercontent.com/DivineEngine/Profiles/master/Surge/Ruleset/StreamingMedia/Video/Netflix.list,Streaming
+# YouTube
+ RULE-SET,https://raw.githubusercontent.com/DivineEngine/Profiles/master/Surge/Ruleset/StreamingMedia/Video/YouTube.list,Streaming
+# HBO go
+ RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Surge/HBOAsia/HBOAsia.list,Streaming
+
+# Streaming 国际流媒体服务
+RULE-SET,https://raw.githubusercontent.com/DivineEngine/Profiles/master/Surge/Ruleset/StreamingMedia/Streaming.list,Streaming
+
+# StreamingSE 中国流媒体服务（面向海外版本）
+RULE-SET,https://raw.githubusercontent.com/DivineEngine/Profiles/master/Surge/Ruleset/StreamingMedia/StreamingSE.list,StreamingSE
+
+# Telegram
+# RULE-SET,https://raw.githubusercontent.com/DivineEngine/Profiles/master/Surge/Ruleset/Extra/Telegram/Telegram.list,Proxy
+
+# 以下规则将触发本地 DNS 解析
+RULE-SET,LAN,Direct
+GEOIP,CN,Direct
+FINAL,Proxy,dns-failed
 
 [MITM]
-skip-server-cert-verify = true
-hostname = plogin.m.jd.com, home.m.jd.com, api.vc.bilibili.com, account.huami.com, www.dutangapp.cn, *.video.qq.com, zt.wps.cn, act.10010.com, m.client.10010.com, m.weibo.cn, c.tieba.baidu.com, api.m.jd.com, weather-data.apple.com, api.weather.com
-hostname-disabled = plogin.m.jd.com, home.m.jd.com
-ca-passphrase = UNCLEWANG
-ca-p12 = MIIJ4QIBAzCCCacGCSqGSIb3DQEHAaCCCZgEggmUMIIJkDCCBEcGCSqGSIb3DQEHBqCCBDgwggQ0AgEAMIIELQYJKoZIhvcNAQcBMBwGCiqGSIb3DQEMAQYwDgQIIID8XedewzgCAggAgIIEANnWZ5t2guVFaifs0lzFt9/vD4NhiDeDTnk/0F8RIUg1WdKBgsj4SvtvTBogsVQvMhyq5Y3+zMC3IW3FTs+5JW+ZTQl3MKiiDpENTIQhaxv+mP40Ml02wKqWKavJQ3lvNjPt0kSAY5VmBrs8CTdr9PzqUBEfHdLJnmJXSpxrtVAoW5ikDQ86CabvC0gs25KfK0lUWWRyW2Y4Euv7lzhtcfOzk7Z3dYDUpb9woazbMJgqtLwK7D087CgTq37JdLu6XvgtVAsknUQRASOM1zvBsaRw7vDL6sA6IdLaIe9CdL77wEAwhCMR8y5z4QYgMu7Vlvxd3htka9M+o6zOjsyeer8pM/xo1fLxbljzg7wB/yBjtQ/bMX2xNiQiLYw1mJDbvqhDw2yobBSvuhTNiaKqCSZnQvFJgcO2wWlOVDpu/xnsw39YLSFLt2Kav8PqilrOb3h964vpQxezNQA//oqQglhi36uc33QDXIbOsHdSjxrVvbESYSeG8P1bCMML3YwS0w4Ywhbf8HaZ1xpejUI6m7E1ww2LBO4H8+6z1gbnm0peR1bsRbU4oW4OZsTZN9lppUfzH6cDkcG4M3gCO+urnXrRyM9om37J3mERs9OpXpU3TLUVb+uN5mQy5IfBHELPQfSAJsVgOQGxZCqA0f091o0MQAfgjO168GLYI9rgqzAQV/GCDMqQzt4/EVVK6UBhnAkOmvKnBsrCQYNSeBE6W7cej5UCVAMQfrQYtJrz1u9R1YXYb3pvEMPlnkvHtETTNPsVqqvalYq6cJTzwItetdzyjVNEEEDjhx57GoAU2fB/vlq2IzDz78WLo9iDA0kmtgpPdx8w9NhOhgVth8MvWvN5WEiAAq6/fszfauVASL0YYt96F6Tflis55p55LvgbNqjpa6SlJhgOesh3rwed982dToglRZ4yJe9JSKgyO89e0XVI//PHpShH9mEQ8WADWVR9cNqHdNhLw/mRvK4B89MxJeSmWlqxhsntCuGVSxbeEzho9cirfwkkHfPQYO7fCDobtM/3loDAb441Do432Swj/Lp2l3LLGDSAZNKVOX6HAo1GmyI1wRo/frdetiz1c2h0BEVdDTGoyIpFoam+GkU4WYZvHhGw3lExMuEpjVp/0HEauQe6wDDLXSDLqHl9uJJTi8LqPhXxYuaW1XgEr9slP6RCwsIAq2wxOdf4BaalFt3gNcoHW+uh/YIwgK4319g3XPr9VrZyK/AHOqV9FoCIqMuUpBzD2Q7KpiZXFoIi1qTyg8sherZyLSv8fUIXETnD1FWx6yBt3unpx8DLuuyn7D6MMxfmQ4to4azThHXP7ln78lOGuIMLJD/6iX9U4ASxwqmmGjdkPQCBs8mX2EswggVBBgkqhkiG9w0BBwGgggUyBIIFLjCCBSowggUmBgsqhkiG9w0BDAoBAqCCBO4wggTqMBwGCiqGSIb3DQEMAQMwDgQIdH+6OhZ7nGwCAggABIIEyOZHte71jtoiTqgSURn+fY+zMNo/Q2gAf0BfDBZDV3wJHikMmFC1ZANUSpqlx5QmpfyxqTJSRMU/J5I+IKn7O7smRidDdakcS+xweKxQwtjVkl2TQZx7swoqM5A1eKEAt5Qw1FvqiTt2Qfr7yezjdF0PG7I4A826UpqsqMqLWN8S4oXY5y9wra9DdjITHq1ll8/XvGclYozPL1qxv3B6YXqUX9ES/JOoo3rGPGC6qvxyVwsRpzpFSsM7U/8HBBiHtfflei6JRNCVAD0Dd01klMlnE9FDXKCEezfOnl7yPYcIffvDBcyGyxMbLk3+BAc5QEmFa6rql2K3xhzmPGS5EFLhR0wzFZ5W2NlzOk5TV9RGC+EmSHBAFBbGMuh3Id896yxx7kPO0HnVrOCa6YujwMmMk2WSCtcFwXlAjI+Y/T2ofKVNWxkpBSVfu9rjULiF5/2f56Nl7INpx5lgSCH4NbeKaSsGnVdWLe15eJ+HFG2l/Ss0oCknffKCyKqVvRRGqFfWgKwcHC6Bmb8QAKAHdDBMgPTXV/2siRkwcxG8KJEc9U9t0m9chsDh7vGhucR5ybaNBMqo2M/wwezPugEc6mm8ficSlIiGvW633aFqmuVCOhta1K1ky5O3+fqbqw4q04Z//6ToiUa+P5pa41E7BUzJeEZp1U981UxXDwdiEv/VYIf//TCU8pIVSXmLmDTxInD/h2ZJ/fCuVqnH86fP5nKti92npKlr/ulH4av8VYFiDlHhllHjTqrT3lL6wcHkpJuCrs1FCzWjRYPCRcR9PHphs40nB0FJxFcwpablRou30b9Aw6m88xe7feuEYzer884EJLxmFYKba5Xuc38ZDoiI6kf+49U8iqIsbqlPv56NgaZCcOekrd/fJsZrLzCnhfej/LGeIOeOdFzcRv4ilGn0APcb+vZzVINE6nYevyED1UOaQmc/tozFC7Cus3WYQmToTgrTyyb8TcqbKg6npMEZy0gbUEGa9dw7JaCgy0Jv+VNCthL0jgo2+3Uw/jAHl2K/TpvtQGQiMywO3DKcYLjoShdZbhn7DSgOkygMXri0QwYY3USt0QPIoE7QJxLtcBFjPjggTVZ67/wz+yvrtT9ldAWMxk2c3+iuosqAFK4/kfEJsqrU3hQwD0ZvOiQh8vTaqC17ZtxRrG4824pPjsA3uXZpOz0nAbfz9s6zCLlHi6Jcq+LL5SpFO2ZPKihGUXwo3OxLpRw1RZar9ZRntnRl2n9/ExTUawTqYpg+g/gb6rN3XUioyQY0q7RuyS9uQK5GIQ+8HJh4yd8DZOKuFOBKQ6nI8lLfFgW6H9XX+TqK/05pcjpAb+Gc15Z9Cb0CArUeaZG0Xikr4CpcP294MO9twNLPesRb/ZAryIjp8VFM/DWFi027l5Q9M00PF/gyOdOcIdUlUoU3MLSpb/1vVkZNMWIEx7nG8ZtJE9T7Zlxt+/v56C5gm2EEGBkz7xY0q2lYMxV43BusBi5hbcOv+MF/w6dplL/6udQj/QBhPuXCPBHAVu0giFjYmDPHdHQKoVE+8JSC+cHd7df6iwsmVvZECVfKnUcv/T4j7uxUXopTYVlLgoBWlydgvo4BI4sLbbngt2zGqq6RRUcDToIqKkfDsld2g0frBjElMCMGCSqGSIb3DQEJFTEWBBQKwhbGZp3ZUB4s0EFGdDEjsOdG6TAxMCEwCQYFKw4DAhoFAAQURUuNj4DsRdHOU+VdF1f1LMcVK9sECJeYQZ+sQWRAAgIIAA==
-
-[Script]
-# 附带重载配置,SurgePro标题,可显示启动时间,点击刷新为重载配置
-缓存开关 = type=generic,timeout=10,script-path=https://raw.githubusercontent.com/githubdulong/Script/master/surgepro_flushdns.js,argument=icon=timer&color=#ffa500&title=𝗦𝗨𝗥𝗚𝗘 𝗦𝗧𝗔𝗧𝗘
-# 模块快捷开关
-moduleState = type=generic,timeout=10,script-path=https://raw.githubusercontent.com/howecheung/Personal/master/Surge/Panel%20scripts/moduleState.js,argument=title=𝗝𝗗-𝗖𝗢𝗢𝗞𝗜𝗘&module=Get cookie. By NobyDa&icon=lightbulb.circle&color1=#808080&color2=#ffa500
-# use "module", "title", "icon", "color1" or "color2" in "argument":
-// moduleState = type=generic,timeout=10,script-path=https://raw.githubusercontent.com/zZPiglet/Task/master/asset/moduleState.js,argument=title=Get cookie. By NobyDa&module=TaskCookie&icon=person.icloud.fill&color1=#008080&color2=#994714
-# 机场订阅信息 加上显示重置日期 &reset_day=25
-Sub_info = type=generic,timeout=10,script-path=https://raw.githubusercontent.com/howecheung/Personal/master/Surge/Panel%20scripts/Sub_info_Lite.js,script-update-interval=0,argument=url=http%3A%2F%2Fgalben.xyz%2Flink%2FPKrIiEiPJWxScuuq%3Fsub%3D3%26extend%3D1&title=𝗜𝗡𝗙𝗢-𝗠𝗮𝗼𝗫&icon=wifi.circle
-// 网络信息 = type=generic,timeout=3,script-path=https://raw.githubusercontent.com/TributePaulWalker/Profiles/main/JavaScript/Surge/ipcheck.js
-# 节点检测
-节点检测 = type=generic,timeout=3,script-path=https://raw.githubusercontent.com/LucaLin233/Luca_Conf/main/Surge/JS/ipcheck.js
-# 流媒体解锁
-奈飞查询 = type=generic,timeout=30,script-path=https://raw.githubusercontent.com/githubdulong/Script/master/nf_check.js,argument=title=𝗡𝗘𝗧𝗙𝗟𝗜𝗫
-# 策略组
-节点代理 = type=generic,timeout=10,script-path=https://raw.githubusercontent.com/howecheung/Personal/master/Surge/Panel%20scripts/grouppanel.js,argument=icon=house.circle&color=#1BB39A&group=节点代理
-黑白名单 = type=generic,timeout=10,script-path=https://raw.githubusercontent.com/howecheung/Personal/master/Surge/Panel%20scripts/grouppanel.js,argument=icon=infinity.circle&color=#1BB39A&group=黑白名单
-全球加速 = type=generic,timeout=10,script-path=https://raw.githubusercontent.com/howecheung/Personal/master/Surge/Panel%20scripts/grouppanel.js,argument=icon=globe.asia.australia&color=#1BB39A&group=全球加速
-国际媒体 = type=generic,timeout=10,script-path=https://raw.githubusercontent.com/howecheung/Personal/master/Surge/Panel%20scripts/grouppanel.js,argument=icon=tv.circle&color=#1BB39A&group=国际媒体
-推特趋势 = type=generic,timeout=10,script-path=https://raw.githubusercontent.com/howecheung/Personal/master/Surge/Panel%20scripts/grouppanel.js,argument=icon=paperplane.circle&color=#1BB39A&group=推特趋势
-声田音乐 = type=generic,timeout=10,script-path=https://raw.githubusercontent.com/howecheung/Personal/master/Surge/Panel%20scripts/grouppanel.js,argument=icon=headphones.circle&color=#1BB39A&group=声田音乐
-手动选择 = type=generic,timeout=10,script-path=https://raw.githubusercontent.com/howecheung/Personal/master/Surge/Panel%20scripts/grouppanel.js,argument=icon=arrow.triangle.2.circlepath.circle&color=#1BB39A&group=手动选择
-# 个人脚本
-获取互助码 = type=cron,cronexp=20 13 * * 6,wake-system=1,timeout=3600,script-path=https://raw.githubusercontent.com/shufflewzc/faker2/main/jd_get_share_code.js,script-update-interval=0
-京东资产变动通知 = type=cron,cronexp=2 9 * * *,wake-system=1,timeout=3600,script-path=https://raw.githubusercontent.com/Tartarus2014/Script/master/jd_bean_change.js
-// BoxJs Cookie 每日自动同步 到青龙 = type=cron,cronexp=0 9 * * *,script-path=https://raw.githubusercontent.com/dompling/Script/master/jd/ql_cookie_sync.js,script-update-interval=0
-Boxjs恢复 = type=cron,cronexp=5 10 * * *,script-path=https://raw.githubusercontent.com/dompling/Script/master/gist/restore.js,script-update-interval=0
-Boxjs备份 = type=cron,cronexp=0 10 * * *,script-path=https://raw.githubusercontent.com/dompling/Script/master/gist/backup.js,script-update-interval=0
-// 京东登陆页面辅助 = type=http-response,pattern=^https?:\/\/home\.m\.jd\.com\/userinfom\/QueryUserInfoM,requires-body=1,max-size=0,timeout=1000,script-path=https://raw.githubusercontent.com/dompling/Script/master/jd/jd_login_help2.js,script-update-interval=0
-// 京东个人中心登陆辅助 = type=http-response,pattern=^https?:\/\/plogin\.m\.jd\.com\/login\/login,requires-body=1,max-size=0,timeout=1000,script-path=https://raw.githubusercontent.com/dompling/Script/master/jd/jd_login_help2.js,script-update-interval=0
-// BoxJs会话切换 = type=cron,cronexp="0 12,18 * * *",script-path=https://raw.githubusercontent.com/chavyleung/scripts/master/box/switcher/box.switcher.js,script-update-interval=0
-// Sub-Store 自动同步 = type=cron,cronexp=0 12 * * *,script-path=https://raw.githubusercontent.com/Peng-YM/Sub-Store/master/scripts/cron-sync-artifacts.js,script-update-interval=0
-// 京东签到 = type=cron,cronexp=0 9 * * *,wake-system=1,timeout=240,script-path=https://raw.githubusercontent.com/NobyDa/Script/master/JD-DailyBonus/JD_DailyBonus.js,script-update-interval=0
-百度贴吧 = type=cron,cronexp=0 9 * * *,timeout=60,script-path=https://raw.githubusercontent.com/howecheung/Personal/master/Scripts/Tieba_checkin.js,script-update-interval=0
-// App价格 = type=cron,cronexp=30 7-22 * * *,script-path=https://raw.githubusercontent.com/evilbutcher/Quantumult_X/master/check_in/appstore/AppMonitor.js,script-update-interval=0
-// 腾讯视频 = type=cron,cronexp=0 9 * * *,script-path=https://raw.githubusercontent.com/chavyleung/scripts/master/videoqq/videoqq.js,script-update-interval=0
-// WPS签到 = type=cron,cronexp=0 9 * * *,script-path=https://raw.githubusercontent.com/chavyleung/scripts/master/wps/wps.js,script-update-interval=0
-// Github监控 = type=cron,cronexp=35 7-23/2 * * *,script-path=https://raw.githubusercontent.com/Peng-YM/QuanX/master/Tasks/github.js,script-update-interval=0
-# SSID自动策略 在BoxJs配置
-// SSID自动策略 = type=event,event-name=network-changed,script-path=https://raw.githubusercontent.com/Peng-YM/QuanX/master/Tools/AutoPolicy/auto-policy.js,script-update-interval=0
-
-[Panel]
-Sub_info = script-name=Sub_info,update-interval=43200
-策略面板 = script-name=缓存开关
-moduleState = script-name=moduleState,update-interval=43200
-节点代理 = script-name=节点代理,update-interval=5
-黑白名单 = script-name=黑白名单,update-interval=5
-手动选择 = script-name=手动选择,update-interval=5
-全球加速 = script-name=全球加速,update-interval=5
-国际媒体 = script-name=国际媒体,update-interval=5
-推特趋势 = script-name=推特趋势,update-interval=5
-声田音乐 = script-name=声田音乐,update-interval=5
+# > VIF 对原始 TCP 流量进行解密
+tcp-connection = true
+# > MITM 使用 HTTP/2 协议
+h2 = true
+# > CA 证书
+ca-keystore-name = CA
 
