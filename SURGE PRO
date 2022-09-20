@@ -74,7 +74,7 @@ Telegram = select, Singapore, United States, no-alert=0, hidden=0, include-all-p
 Streaming = select, include-other-group="Singapore, Hong Kong, Taiwan", update-interval=43200, no-alert=0, hidden=0, include-all-proxies=0
 StreamingSE = select, Direct
 Guard = select, Reject, Direct
-Speedtest = select, WARP, include-other-group="Hong Kong, Taiwan, Singapore, Japan, United States, Other", update-interval=43200, no-alert=0, hidden=0, include-all-proxies=0
+Speedtest = select, include-other-group="Hong Kong, Taiwan, Singapore, Japan, United States, Other", update-interval=43200, no-alert=0, hidden=0, include-all-proxies=0
 Outbound = select, update-interval=43200, no-alert=0, hidden=0, include-all-proxies=0, policy-path=https://api.prprcloud.life/node-list/6605/3rDRpfqqnQ/
 Apple = select, 𝗗𝗜𝗥𝗘𝗖𝗧, 𝗣𝗥𝗢𝗫𝗬, no-alert=0, hidden=0, include-all-proxies=0
 AUTO ✰ = url-test, include-other-group="Hong Kong, Singapore", update-interval=43200, no-alert=0, hidden=1, include-all-proxies=1
