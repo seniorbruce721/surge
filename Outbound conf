@@ -4,17 +4,17 @@
 # (在 Wi-Fi 网络不佳时尝试使用数据网络建立连接，请仅当使用不限量的数据流量时开启)
 wifi-assist = false
 # > Internet 测试 URL
-internet-test-url = http://wifi.vivo.com.cn/generate_204
+internet-test-url = http://www.baidu.com
 # > 代理测速 URL
-proxy-test-url = http://cp.cloudflare.com/generate_204
+proxy-test-url = http://1.1.1.1/generate_204
 # > 测试超时（秒）
 test-timeout = 5
 # > TLS 引擎
-tls-provider = openssl
+# tls-provider = default
 # > 自定义 GeoIP 数据库
-geoip-maxmind-url = https://raw.githubusercontent.com/Loyalsoldier/geoip/release/Country.mmdb
+geoip-maxmind-url = https://cdn.jsdelivr.net/gh/Hackl0us/GeoIP2-CN@release/Country.mmdb
 # > IPv6 支持（默认关闭）
-ipv6 = false
+ipv6 = true
 # > 允许 Wi-Fi 访问 (仅 iOS，若允许远程访问将「false」改为「true」)
 allow-wifi-access = false
 wifi-access-http-port = 6152
@@ -30,21 +30,25 @@ skip-proxy = 127.0.0.1, 192.168.0.0/16, 10.0.0.0/8, 172.16.0.0/12, 100.64.0.0/10
 exclude-simple-hostnames = true
 # > Network framwork
 network-framework = false
-# > DNS 服务器 (如无必要不建议使用 DNS over HTTPS)
-dns-server = 119.29.29.29,system
-# > 从 /etc/hosts 读取 DNS 记录
+# > DNS 服务器
+dns-server = 223.5.5.5, 114.114.114.114, 119.29.29.29, system
+# > DNS over HTPPS
 read-etc-hosts = true
+# doh-server = https://1.12.12.12/dns-query
+# doh-server = https://223.5.5.5/dns-query
+# doh-server = https://dns.alidns.com/dns-query
+# > etc/hosts 读取 DNS 记录
+loglevel = notify
 # 高级设置
 # > 日志级别
-loglevel = notify
-# > 当遇到 REJECT 策略时返回错误页
 show-error-page-for-reject = true
-# > Always Real IP Hosts
+# > 当遇到 REJECT 策略时返回错误页
 always-real-ip = *.msftconnecttest.com, *.msftncsi.com, *.srv.nintendo.net, *.stun.playstation.net, xbox.*.microsoft.com, *.xboxlive.com, *.logon.battlenet.com.cn, *.logon.battle.net, stun.l.google.com
-# > VIF Excluded Routes
-tun-excluded-routes = 239.255.255.250/32
-# 如果没有代理服务器支持 UDP 转发，可修改为「 direct 」或注释下条，但需注意同一目标主机名 TCP 请求与 UDP 请求的源地址不同所造成的隐私及安全风险。
+# > Always Real IP Hosts
 udp-policy-not-supported-behaviour = reject
+# 如果没有代理服务器支持 UDP 转发，可修改为「 direct 」或注释下条，但需注意同一目标主机名 TCP 请求与 UDP 请求的源地址不同所造成的隐私及安全风险。
+http-api-web-dashboard = true
+ipv6-vif = disabled
 
 [Replica]
 # 0 为关闭，1 为开启
@@ -63,30 +67,24 @@ hide-udp = 0
 [Proxy]
 🌐Direct = direct
 ⛔️Reject = reject
-🇨🇳TheHub = ss, 1.2.3.4, 443, encrypt-method=chacha20-ietf-poly1305, password=password
-🇺🇸LosSantos = vmess, v2ray.cool, 443, username=a3482e88-686a-4a58-8126-99c9df64b7bf, tls=true, ws=true, ws-path=/v2ray.cool/
-🇭🇰Sandbox = trojan, trojan.com, 443, password=password
-🌏 warp+ = wireguard, section-name=SHARE
-🌏一键连 = https, jc.ap.fastqvpn.com, 29980, username=442993652168396800, password=2ef91648-089f-4c81-b34d-06f072ec51dd, skip-cert-verify=true
-🌏 Warp+1 = wireguard, section-name=790786AA
-🌏 Warp+2 = wireguard, section-name=42B82092
+『WARP』★CF = wireguard, section-name=SHARE
+『WARP』★ SG = wireguard, section-name=790786AA, underlying-proxy=🇸🇬 Singapore
+『WARP』★ JP = wireguard, section-name=42B82092, underlying-proxy=🇯🇵 Japan
 
 [Proxy Group]
-🌑Proxy = select, 🇭🇰 Hong Kong, 🇨🇳 Taiwan, 🇸🇬 Singapore, 🇯🇵 Japan, 🇺🇸 America, 🧯Fallback, 🕹AutoTest, 🌏一键连, 🌏 Warp+, no-alert=0, hidden=0
-🎞Streaming = select, 🇭🇰 Hong Kong, 🇨🇳 Taiwan, 🇸🇬 Singapore, 🇯🇵 Japan, 🇺🇸 America, 🕹AutoTest, 🦆DuckDuckGo, 🌏 Warp+, 🌏一键连, no-alert=0, hidden=0
-🕹AutoTest = url-test, policy-path=https://sub.store/download/shutiao, update-interval=86400, interval=600, tolerance=50, no-alert=0, hidden=0, policy-regex-filter=Netflix|游戏｜IEPL
-🧯Fallback = fallback, update-interval=0, no-alert=0, hidden=0, policy-path=https://sub.store/download/shutiao, policy-regex-filter=Netflix|游戏｜IEPL
-🎞StreamingSE = select, 🌐Direct, 🇭🇰Sandbox
-🦆DuckDuckGo = select, policy-path=https://sub.store/download/shutiao, update-interval=86400, interval=600, tolerance=50, no-alert=0, hidden=0
+🌑Proxy = select, 🇭🇰 Hong Kong, 🇨🇳 Taiwan, 🇸🇬 Singapore, 🇯🇵 Japan, 🇺🇸 America, 『WARP』★★★
+🎞Streaming = select, 🇭🇰 Hong Kong, 🇨🇳 Taiwan, 🇸🇬 Singapore, 🇯🇵 Japan, 🇺🇸 America, 🦆DuckDuckGo, 『WARP』★★★, no-alert=0, hidden=0, include-all-proxies=0
+🎞StreamingSE = select, 🌐Direct
+🦆DuckDuckGo = select, policy-path=https://gist.githubusercontent.com/seniorbruce721/46f4030b96f82f87453bd1512ee1e36b/raw/byg, update-interval=86400, no-alert=0, hidden=0, include-all-proxies=0
 🧭Final = select, 🌑Proxy, 🌐Direct, no-alert=0, hidden=0
 🛡Guard = select, ⛔️Reject, 🌐Direct
-🇭🇰 Hong Kong = url-test, policy-path=https://sub.store/download/shutiao, url=http://www.gstatic.com/generate_204, interval=3600, tolerance=100, hidden=0, no-alert=1, persistent=1, update-interval=86400, policy-regex-filter=(?=.*(港|HK|(?i)Hong))^((?!(台|日|韩|新|美)).)*$
-🇨🇳 Taiwan = url-test, policy-path=https://sub.store/download/shutiao, url=http://www.gstatic.com/generate_204, interval=3600, tolerance=100, hidden=0, no-alert=1, update-interval=86400, policy-regex-filter=(?=.*(台|TW|(?i)Taiwan))^((?!(港|日|韩|新|美)).)*$
-🇯🇵 Japan = url-test, policy-path=https://sub.store/download/shutiao, url=http://www.gstatic.com/generate_204, interval=3600, tolerance=100, hidden=0, no-alert=1, update-interval=86400, policy-regex-filter=(?=.*(日|JP|(?i)Japan))^((?!(港|台|韩|新|美)).)*$
-🇸🇬 Singapore = url-test, policy-path=https://sub.store/download/shutiao, url=http://www.gstatic.com/generate_204, interval=3600, tolerance=100, hidden=0, no-alert=1, persistent=1, update-interval=0, policy-regex-filter=(?=.*(新|狮|獅|SG|(?i)Singapore))^((?!(港|台|日|韩|美)).)*$
-🇺🇸 America = url-test, policy-path=https://sub.store/download/shutiao, url=http://www.gstatic.com/generate_204, interval=3600, tolerance=100, hidden=0, no-alert=1, update-interval=86400, policy-regex-filter=(?=.*(美|US|(?i)States|American))^((?!(港|台|日|韩|新)).)*$
-🚁𝙊𝙩𝙝𝙚𝙧 = select, policy-path=https://sub.store/download/shutiao, url=http://www.gstatic.com/generate_204, interval=3600, tolerance=100, hidden=0, no-alert=1, update-interval=86400, policy-regex-filter=^((?!香港|台湾|新加坡|日本|韩国|美国|德国).)*$
-🌏 Warp+ = load-balance, 🌏 Warp+1, 🌏 Warp+2, 🌏 warp+, persistent=0, no-alert=0, hidden=0
+🇭🇰 Hong Kong = url-test, update-interval=86400, policy-regex-filter=(?=.*(港|HK|(?i)Hong))^((?!(台|日|韩|新|美)).)*$, interval=3600, tolerance=100, no-alert=0, hidden=0, include-all-proxies=0, include-other-group=🦆DuckDuckGo
+🇨🇳 Taiwan = url-test, update-interval=86400, policy-regex-filter=(?=.*(台|TW|(?i)Taiwan))^((?!(港|日|韩|新|美)).)*$, interval=3600, tolerance=100, no-alert=0, hidden=0, include-all-proxies=0, include-other-group=🦆DuckDuckGo
+🇯🇵 Japan = url-test, update-interval=86400, policy-regex-filter=(?=.*(日|JP|(?i)Japan))^((?!(港|台|韩|新|美)).)*$, interval=3600, tolerance=100, no-alert=0, hidden=0, include-all-proxies=0, include-other-group=🦆DuckDuckGo
+🇸🇬 Singapore = url-test, update-interval=0, policy-regex-filter=(?=.*(新|狮|獅|SG|(?i)Singapore))^((?!(港|台|日|韩|美)).)*$, interval=3600, tolerance=100, no-alert=0, hidden=0, include-all-proxies=0, include-other-group=🦆DuckDuckGo
+🇺🇸 America = url-test, update-interval=86400, policy-regex-filter=(?=.*(美|US|(?i)States|American))^((?!(港|台|日|韩|新)).)*$, interval=3600, tolerance=100, no-alert=0, hidden=0, include-all-proxies=0, include-other-group=🦆DuckDuckGo
+🚁𝙊𝙩𝙝𝙚𝙧 = select, update-interval=86400, policy-regex-filter=^((?!港|HK|Hong|hk|🇭🇰 |湾|TW|Taiwan|tw |坡|SG|🇸🇬|Singapore|日|JP|Japan|🇯🇵|美|US|🇺🇸 ).)*$, no-alert=0, hidden=0, include-all-proxies=0, include-other-group=🦆DuckDuckGo
+『WARP』★★★ = select, 『WARP』★ SG, 『WARP』★ JP, 『WARP』★CF, persistent=0, no-alert=0, hidden=0, include-all-proxies=0
 
 [Rule]
 AND,((PROTOCOL,UDP), (DEST-PORT,443)),REJECT-NO-DROP
@@ -114,9 +112,9 @@ RULE-SET,https://raw.githubusercontent.com/DivineEngine/Profiles/master/Surge/Ru
 # Disney+
 # RULE-SET,https://raw.githubusercontent.com/DivineEngine/Profiles/master/Surge/Ruleset/StreamingMedia/Video/DisneyPlus.list,🎞Streaming
 # Netflix
-# RULE-SET,https://raw.githubusercontent.com/DivineEngine/Profiles/master/Surge/Ruleset/StreamingMedia/Video/Netflix.list,🎞Streaming
+RULE-SET,https://raw.githubusercontent.com/DivineEngine/Profiles/master/Surge/Ruleset/StreamingMedia/Video/Netflix.list,🎞Streaming
 # YouTube
-# RULE-SET,https://raw.githubusercontent.com/DivineEngine/Profiles/master/Surge/Ruleset/StreamingMedia/Video/YouTube.list,🎞Streaming
+RULE-SET,https://raw.githubusercontent.com/DivineEngine/Profiles/master/Surge/Ruleset/StreamingMedia/Video/YouTube.list,🎞Streaming
 # Spotify
 # RULE-SET,https://raw.githubusercontent.com/DivineEngine/Profiles/master/Surge/Ruleset/StreamingMedia/Music/Spotify.list,🎞Streaming
 # Streaming 国际流媒体服务
@@ -124,7 +122,7 @@ RULE-SET,https://raw.githubusercontent.com/DivineEngine/Profiles/master/Surge/Ru
 # StreamingSE 中国流媒体服务（面向海外版本）
 RULE-SET,https://raw.githubusercontent.com/DivineEngine/Profiles/master/Surge/Ruleset/StreamingMedia/StreamingSE.list,🎞StreamingSE
 # Telegram
-# RULE-SET,https://raw.githubusercontent.com/DivineEngine/Profiles/master/Surge/Ruleset/Extra/Telegram/Telegram.list,🌑Proxy
+RULE-SET,https://raw.githubusercontent.com/DivineEngine/Profiles/master/Surge/Ruleset/Extra/Telegram/Telegram.list,🌑Proxy
 # Global 全球加速
 RULE-SET,https://raw.githubusercontent.com/DivineEngine/Profiles/master/Surge/Ruleset/Global.list,🌑Proxy
 # Apple 服务
@@ -135,33 +133,9 @@ RULE-SET,https://raw.githubusercontent.com/DivineEngine/Profiles/master/Surge/Ru
 RULE-SET,LAN,🌐Direct
 # GeoIP China
 GEOIP,CN,🌐Direct
-FINAL,🧭Final,dns-failed
+FINAL,🌑Proxy,dns-failed
 
 [Host]
-# > Apple
-aaplimg.com = server:119.29.29.29
-apple.com = server:119.29.29.29
-apple.com.cn = server:119.29.29.29
-apple-cloudkit.com = server:119.29.29.29
-apple-livephotoskit.com = server:119.29.29.29
-apple-mapkit.com = server:119.29.29.29
-cdn-apple.com = server:119.29.29.29
-icloud.com = server:119.29.29.29
-icloud.com.cn = server:119.29.29.29
-mzstatic.com = server:119.29.29.29
-*.aaplimg.com = server:119.29.29.29
-*.apple.com = server:119.29.29.29
-*.apple-cloudkit.com = server:119.29.29.29
-*.apple-livephotoskit.com = server:119.29.29.29
-*.apple-mapkit.com = server:119.29.29.29
-*.cdn-apple.com = server:119.29.29.29
-*.icloud.com = server:119.29.29.29
-*.icloud.com.cn = server:119.29.29.29
-*.mzstatic.com = server:119.29.29.29
-*apple.com.akadns.net = server:119.29.29.29
-*.apple.com.edgekey.net = server:119.29.29.29
-*.apple.com.edgekey.net.globalredir.akadns.net = server:119.29.29.29
-*icloud.com.akadns.net = server:119.29.29.29
 # > Firebase Cloud Messaging
 mtalk.google.com = 108.177.125.188
 # > Google Dl
@@ -193,34 +167,34 @@ falogin.cn = server:syslib // FAST Router
 
 [MITM]
 skip-server-cert-verify = true
+tcp-connection = true
+h2 = true
 hostname = www.google.cn, www.firefox.com.cn, api.abema.io
-ca-passphrase = 6F0A9109
-ca-p12 = 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
-
-[Script]
-京东资产变动通知 = type=cron,cronexp=2 9 * * *,wake-system=1,timeout=3600,script-path=https://raw.githubusercontent.com/Tartarus2014/Script/master/jd_bean_change.js
-Boxjs恢复 = type=cron,cronexp=5 10 * * *,script-path=https://raw.githubusercontent.com/dompling/Script/master/gist/restore.js,script-update-interval=0
-Boxjs备份 = type=cron,cronexp=0 10 * * *,script-path=https://raw.githubusercontent.com/dompling/Script/master/gist/backup.js,script-update-interval=0
-Sub-Store 自动同步 = type=cron,cronexp=0 12 * * *,script-path=https://raw.githubusercontent.com/Peng-YM/Sub-Store/master/scripts/cron-sync-artifacts.js,script-update-interval=0
+ca-passphrase = 1BA071A0
+ca-p12 = MIIKPAIBAzCCCgYGCSqGSIb3DQEHAaCCCfcEggnzMIIJ7zCCBF8GCSqGSIb3DQEHBqCCBFAwggRMAgEAMIIERQYJKoZIhvcNAQcBMBwGCiqGSIb3DQEMAQYwDgQI6tgniNh1IkcCAggAgIIEGB0Kwyx4P1LV3JYi0cWpi+3hwReYRptR1GsLlQU+LGq4CdGvYNhX6BK4MjOrbU5WDZx30KIdGSIBmhOq29PcWfo0scpXGnDb24LLL/A08JwFcGx64OV7ZQ4XBQa0rxifpDw0DsaNDKAH2HNXEwdT4n/whFOry3PM2AXRZP8cSQ/iGsi/+RRyZHAnosVPIVzz4rEUrg+BRtIs48ughCqhbcCqc3UQMGap0yxShAew0Mm/kNOqJMKcoyzUdDoO4//VDmskvMms390agVItUmXeID/RbE/3tUyvERkKiykeGZt2I5oYtUOdr4W9lOx9pUWh7K0ZDMD9Mbrm+4hGqV0khK7H7hGuSA/jc4412ExJi5z4xDO9L5M7ZD0e9+QikLFzncUolibbC8vtwy7pZl5DfGKv2hlsWfIm8Bw4T5S4N0WFqGTk7sguMD0geVlT5bl6rfD2Kz0k93NvVIUBySlAZe6TEa0+HlWVSwyRJbtOafEjoD5nuOfdLI2dZ6g8cuv0OFAvw4UoJekKguHMX5jecJpI54Gpx2/9qFFo+cZdoNniqWTsd12KmbYsgde/fVDoP90DzSBvHPA5GspxoCc6n+g71c7FRKXpJpzDHnaRiThkPXzhGekvvdPNWBt7I60L0zRkTNhmfaSshedjWQyi2RyXoH9q2iUyOsZVeo4C29WLhyOL6CQ8HMyJmfe4HfSjH5z98Rj6S5d3lav4h/v+3t6ALKARnJZWBHcOZhZ0VjEw5tabhD6UYjVA1NJ41GiTKR198+qz7bqrTbEB8dtllqumw/cAu4/9zDgdv2SDkcu94x7R0TqlGDY/1LtAHdU1zVsEac4TtYIPivvaCXMeGITWaXNK5qkTWD+jnqCQ29fKDX3c74o3kjsKIS6c0I46tHKpcXgh8YcxgreoYWh1YX3AAuAbaP7bg7T5Xr9URX7waWmRDRhkHZkMN/Rt/ArNuGLhaNym+kNNOSJTr0rNp++wUK7gxeyk1FwzH4rQ+upv6vzjwtYDObWaEfS6qr8LJHsF7Z6zDVf5jFNDFYWnA1gxcqgmwphYF/2eemLBFMfWz9xhN4pjmTNYlkFgddUsULCuGR9S3W2RxYgT10H48lZRbl79euL0QImaB/zz8bDK23bEDSsjOjcnvY0qsIWhdnO37zFykSZHzPpYXrEnPOxfo2Q+Nf9y1nqlk9M7quQLHa4FDiqmPh/14v36rjM4RoT79PyAji6ZbmUzssBavJ4f4wAjqnDqiGyi9VExGvBcjWwSTZ/BEQIBGm9NIHyA7+Qm8+bBM4zB/xTW6Q4g87MtwznzpEbQO7Q5hdWwDqRsfn2THAI61tCQgpRttffuRUM/VCfi2RGdV/Qax763QKhBem9Z+jGcaAUWZCjif8aWKXAazFlCx4owggWIBgkqhkiG9w0BBwGgggV5BIIFdTCCBXEwggVtBgsqhkiG9w0BDAoBAqCCBO4wggTqMBwGCiqGSIb3DQEMAQMwDgQILdwWzYtY708CAggABIIEyFBD+deXx1W459OhFtIKe1D0whsYH8u5N3/WYILLaP6URk5fPM7/GInKvllOehK/rtzd1RoVG2legpOduAeNbCfXUVZb8UFeataFODGTfyaToMV45j0Wju1Ya8EzR6o8x7KBDC2H28oEZ0we7vZ5znexS+EKwv8eRPZqsX30GPgYEXDu8FVHMQYlvoEFyjzv4jgbEMcdbUaszuAHjlvhDdjt3RXrHVJAGZtT5vP3I4cakQgdy/g/8XBn7lDixSdkf8l3YTIDY9M1TBn3ZiiDGgcmCf8i2OTd9DZiwVGowWcYT/PSfPVmSke0Bh3B/n/oGLG2JNeePuVRUk11f4ucImZRTJBQlWsT0KVJscST858MFsfogIbbAYkxPXmsRWLG45d1or++YaxmkpzcazIVmep2XJNa+WBOo4hsFUn37n5IEkMkVi//vQTtsOZ8ZTCnBqjiNgQuVnXn6BX3402O1PWPB0CVD+VSdqJhFUZKNfyCxczSKBeJ+jcqdhY9fILJcn9CeJcl7y2ttKOyeZ3xiiTcIJ7Zp/niA3wZqZtx41G+gpsfA/eoy6th7oNCMjwzFqnk5hzE1fDd5G7R44dcnTKfZY9+TaLqSAcYN6qAK70sMb7r1lcpyDCzMAdlXXZDx6Sn1tm/mFaJTYX6N+KTOsKMNRsGKU/gSBcaWb0ySy3hvpHXOVLbRYQH2hwxKa158AgmtLeo1LKjcHX/kezjf+mztSbN8/D4Y3ZeqV/xfe92Lf5XFTM5sLfs0wmzr0OXvmDjdIFr7ckhBJN6Gbz1CdmubjEtaBPOvXCEhzK5P+rJJSOb1PaJ7+BubISkC0/YHVdKVZXeFDr+Y+Qzo/mikmAjgBgmxtUCHqikdK173wnGxtz0FTMXCHpjbF+xIH/wUyig6BrZFrDewgU+t4XxSmspey4ubIpLHNQp/PcsIEh+sXp5dHzOxzYETeG0GDzQ3jnlzi+j+cFAsizPpVpQOW/KsPuCMfbXSwA5KprTg4kS2/i4ltP7payUwHZzSYdaLZ++x2AzYhL3fhnsJZASWkY3eRmr8+8XjJjNtEKqRbWaIIxF6GpsV/6h/dYxuhZ48RMNkCoykPxZOcZH0z7K2z7TWr5hY8Td0/3ydya1FKgI9idFDOMaRpZF4rWpB7FjBrdiLBcR49URm7e9RFKf8kdIDhsgnD7VSMRDpx2xoZiryh6MvVfzSVpeyARJL+TDhZsAC7fL4fGIiO+SrapMWMg5iXOGAm07mBbgDoMGfwOF7Mrm7JODY34xpJ6Q1AcfDw6VxzCe16zcpRE49fAcrK0p/8alnMSNVyuDlXSRoJbPmoE9fC4wPiMJfWvxNQZo6e+J86+pMstEgLMuq4jvrDtWOZySzNc96g+1YTLMY6he3qdbQOJQVvLA7WQ+kMJ7Xluc4tpdhlSp+VrbViX7oB2TnHO9enpPyf9hS7PLt+Qml4dk6vC8wkMa1xANdQ2i4jXsPBpNklAn3IpDpytS2968dSc1INCpjqU1jANqDnB8jge8aiU21aD93kivbOYcCumbiB5AKe4JnbdAKMSocmdQst38lG/rQWAWeNkyuvt7oXN2UtY1Ko7EfEZzziVwQjyfK8pvgZak+wS0652cZZQdaclFP4MqtjFsMCMGCSqGSIb3DQEJFTEWBBSi0nDMjdr2n0i87JJgHXWclU67bjBFBgkqhkiG9w0BCRQxOB42AFMAdQByAGcAZQAgAEcAZQBuAGUAcgBhAHQAZQBkACAAQwBBACAAMQBCAEEAMAA3ADEAQQAwMC0wITAJBgUrDgMCGgUABBSCcio177VaxsGHkPDnPuPnWDIMKgQIQ6jMIiPhJZU=
 
 [WireGuard SHARE]
-private-key = yBzFxeDw+JKPSnJIEOlQp1nXb8aux+AFXJF2wPfYBWw=
-self-ip = 172.16.0.253
-dns-server = 1.1.1.1
-mtu = 1280
-peer = (public-key = bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=, allowed-ips = 0.0.0.0/0, endpoint = 162.159.193.10:2408)
+private-key = CCe8ZifFZORjjTVQuw+ao1spUXTxHDsVfY9onciMiUA=
+self-ip = 172.16.0.2
+self-ip-v6 = 2606:4700:110:8da8:20da:6524:2b2b:cd9d
+dns-server = 162.159.36.1, 2606:4700:4700::1111
+mtu = 1350
+peer = (public-key = bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=, allowed-ips = "0.0.0.0/0, ::0/0", endpoint = engage.nanocat.me:2408, keepalive = 45)
 
 [WireGuard 790786AA]
 private-key = oM8FSVydfZO7lKozP4mZshIM+tV1jVqd4lZVCK9FBWs=
-self-ip = 172.16.0.254
-dns-server = 1.1.1.1
-mtu = 1420
-peer = (public-key = bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=, allowed-ips = 0.0.0.0/0, endpoint = 162.159.193.1:2408)
+self-ip = 172.16.0.2
+self-ip-v6 = 2606:4700:110:8db2:c69b:62c7:a6ce:2cbd
+prefer-ipv6 = true
+dns-server = 162.159.36.1, 64.6.64.6, 2001:4860:4860::8888
+mtu = 1280
+peer = (public-key = bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=, allowed-ips = "0.0.0.0/0, ::0/0", endpoint = engage.nanocat.me:2408, keepalive = 45)
 
 [WireGuard 42B82092]
-private-key = IFCy1m2WR0H4vEnYPO9h1RuJiUOaeSQBO9DRxTzheXQ=
-self-ip = 172.16.0.254
-dns-server = 1.1.1.1
-mtu = 1420
-peer = (public-key = bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=, allowed-ips = 0.0.0.0/0, endpoint = 162.159.193.6:2408)
+private-key = 2AjWb9TGbCPWWHF2i8/65kCG/ZOJaFX5vvEjuNOX+U4=
+self-ip = 172.16.0.2
+self-ip-v6 = 2606:4700:110:8233:8079:cef3:3209:a3cf
+dns-server = 162.159.36.1, 2606:4700:4700::1111
+mtu = 1280
+peer = (public-key = bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=, allowed-ips = "0.0.0.0/0, ::0/0", endpoint = engage.nanocat.me:2408, keepalive = 45)
 
