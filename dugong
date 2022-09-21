@@ -1,211 +1,175 @@
-[Section]
-# ✰MuTu Surge Pro 自用配置
-# ✰以“#” “;” 和 “//“ 开头的行为注释行
-# ✰具体配置请参考Surge使用手册 https://manual.nssurge.com
-
 [General]
-# > HTTP-API
-http-api = MuTu@0.0.0.0:6170
-# > 日志等级
-loglevel = notify
-# > 跳过代理
-skip-proxy = 127.0.0.1, 192.168.0.0/16, 10.0.0.0/8, 172.16.0.0/12, 100.64.0.0/10, 17.0.0.0/8, localhost, *.local, *.crashlytics.com
-# > VIF Excluded Routes
-tun-excluded-routes = 192.168.0.0/16, 10.0.0.0/8, 172.16.0.0/12 , 239.255.255.250/32
-# > VIF Included Routes
-tun-included-routes = 192.168.1.12/32
-# > Always Real IP Hosts
-always-real-ip = *.srv.nintendo.net, *.stun.playstation.net, xbox.*.microsoft.com, *.xboxlive.com
-# Hijack DNS
-# hijack-dns = 8.8.8.8:53, 8.8.4.4:53
-# > 允许 Wi-Fi 访问macOS
-http-listen = 0.0.0.0:8888
-socks5-listen = 0.0.0.0:8889
-# > 允许 Wi-Fi 访问iOS
-allow-wifi-access = true
-wifi-access-http-port = 6152
-wifi-access-socks5-port = 6153
+# 此配置基于神机配置，需配合“General模块”，地址：https://raw.githubusercontent.com/DivineEngine/Profiles/master/Surge/Module/General.sgmodule。未解锁模块功能请勿使用。
+# 通用设置
+# > 增强版 Wi-Fi 助理(默认关闭)
+wifi-assist = false
+# 混合网络（默认关闭）
+all-hybrid = false
 # > Internet 测试 URL
-internet-test-url = http://www.aliyun.com
+internet-test-url = http://connectivitycheck.platform.hicloud.com/generate_204
 # > 代理测速 URL
-proxy-test-url = http://www.gstatic.com/generate_204
+proxy-test-url = http://1.1.1.1/generate_204
 # > 测试超时（秒）
 test-timeout = 5
+# > 自定义 GeoIP 数据库（默认surge内置地址，需自定义可自行设置）
+# > IPv6 支持（默认开启自动）
+ipv6-vif = auto
+# > 允许 Wi-Fi 访问 (仅 iOS，若允许远程访问将「false」改为「true」)
+allow-wifi-access = false
+# > 允许 Wi-Fi 访问 (仅 macOS，若允许远程访问将「127.0.0.1」改为「0.0.0.0」)
+wifi-access-http-port = 6152
+wifi-access-socks5-port = 6153
+http-listen = 127.0.0.1:6152
+socks5-listen = 127.0.0.1:6153
+# > 兼容模式 (仅 iOS，默认禁止)
+compatibility-mode = 0
+# > 跳过代理
+skip-proxy = 127.0.0.1, 192.168.0.0/16, 10.0.0.0/8, 172.16.0.0/12, 100.64.0.0/10, localhost, *.local, passenger.t3go.cn
 # > 排除简单主机名
 exclude-simple-hostnames = true
-# > IPv6 支持
-ipv6 = false
-# > Network framwork
+# > Network framwork（默认关闭）
 network-framework = false
-# > 当遇到 REJECT 策略时返回错误页
-show-error-page-for-reject = true
-# > TLS 引擎
-tls-provider = openssl
-# > Wi-Fi 不是主接口则使用SSID组的默认策略
-use-default-policy-if-wifi-not-primary = false
-# > 增强版 Wi-Fi 助理
-wifi-assist = false
-# > DNS 服务器
-dns-server = 119.29.29.29, 223.5.5.5, system
-# > DNS over HTPPS
-doh-server = https://120.53.53.53/dns-query
-# doh-server = https://1.12.12.12/dns-query
-# doh-server = https://223.5.5.5/dns-query
-# doh-server = https://dns.alidns.com/dns-query
-# > etc/hosts 读取 DNS 记录
+# DoH 请求通过代理策略执行（默认关闭）
+doh-follow-outbound-mode = false
+# > DNS 服务器 (默认阿里DOH公共解析)
+dns-server = 223.5.5.5
+encrypted-dns-server = https://dns.alidns.com/dns-query
+# > 从 /etc/hosts 读取 DNS 记录（默认开启）
 read-etc-hosts = true
-# > 路由防火墙
-# 包含所有的网络请求
-include-all-networks = false
-# 包含本地网络请求
-include-local-networks = false
-# > 自定义 GeoIP 数据库
-geoip-maxmind-url = https://cdn.jsdelivr.net/gh/Hackl0us/GeoIP2-CN@release/Country.mmdb
-# > GeoIP 自动更新
-disable-geoip-db-auto-update = false
-# > UDP IP 防泄漏
-udp-policy-not-supported-behaviour = REJECT
-# > HTTP-API-TLS
-http-api-tls = false
-# > Web 控制器
-http-api-web-dashboard = true
-# > 隐藏 VPN 图标
-hide-vpn-icon = false
-# > All Hybrid 网络并发
-# all-hybrid = false
-# > 兼容模式
-# compatibility-mode = 0
-# > 允许个人热点使用代理
-allow-hotspot-access = true
+# 高级设置
+# > 日志设置相关
+loglevel = warning
+show-error-page-for-reject = false
+always-real-ip = *.msftconnecttest.com, *.msftncsi.com, *.srv.nintendo.net, *.stun.playstation.net, xbox.*.microsoft.com, *.xboxlive.com, *.logon.battlenet.com.cn, *.logon.battle.net, stun.l.google.com
+# 以下配置建议注释
+# tun-excluded-routes = 192.168.0.0/16, 10.0.0.0/8, 172.16.0.0/12
+# tun-included-routes = 192.168.1.12/32
+# > 当遇到 REJECT 策略时返回错误页。
+# 如果没有代理服务器支持 UDP 转发，可修改为「 direct 」或注释下条，但需注意同一目标主机名TCP请求与UDP请求的源地址不同所造成的隐私及安全风险。
+udp-policy-not-supported-behaviour = reject
+# 本地DNS映射（默认开启）
+use-local-host-item-for-proxy = true
+# 隐藏vpn图标（Wi-Fi状态下正常生效，数据连接模式下需禁用IPV6 VIF设置才可生效）
+hide-vpn-icon = true
+ipv6 = true
 
 [Replica]
+# 0 为关闭，1 为开启
 # > 隐藏 Apple 请求
-hide-apple-request = false
+hide-apple-request = 1
 # > 隐藏崩溃追踪器请求
-hide-crashlytics-request = true
+hide-crash-reporter-request = 1
 # > 隐藏 UDP 会话
-hide-udp = false
+hide-udp = 0
 # > 关键词过滤器
-keyword-filter-type = false
-
-[SSID Setting]
-# > Wi-Fi 蜂窝 强制启用TCP Fast Open
-# TYPE:WIFI tfo-behaviour=force-enabled
-# TYPE:CELLULAR tfo-behaviour=force-enabled
+# none（关闭关键词过滤器） / whitelist（blacklist（仅记录包含关键字的请求）） / blacklist（仅记录不包含关键字的请求） / pattern（匹配通配符的请求）
+# keyword-filter-type = none
+# > 关键词
+# keyword-filter = (null)
+# 策略组使用url-test模式，如需fallback请自行在ui配置，新增Warp配置（文本最底部），相关具体设置请自行搜索薯条🍟佬的方法
+# 策略组配置
 
 [Proxy]
-𝗗𝗜𝗥𝗘𝗖𝗧 = direct
-𝗛𝗬𝗕𝗥𝗜𝗗 = direct, hybrid=on
+🌐Direct = direct
+⛔️Reject = reject
+IPV6☁️warp = wireguard, section-name=C8314824, underlying-proxy=日本, test-url=http://1.1.1.1/generatel_204
+IPV4☁️warp = wireguard, section-name=096643BG, underlying-proxy=Flower, test-url=http://1.1.1.1/generate_204, ip-version=v4-only
 
 [Proxy Group]
-𝗲𝘅𝗶𝘁𝗮𝗹𝗹𝘆 = select, policy-path=http://sub.info?url=(这个网站转义https://www.urlencoder.org)&reset_day=11&alert=1&title=Nexitally, update-interval=300, no-alert=0, hidden=0
-𝗗𝗹𝗲𝗿𝗖𝗹𝗼𝘂𝗱 = select, policy-path=http://sub.info?url=(这个网站转义https://www.urlencoder.org)&reset_day=1&alert=1&title=DlerCloud, update-interval=300, no-alert=0, hidden=0
-𝗦𝘁𝗮𝗻𝗱𝗯𝘆 = select, policy-path=https://sub.store/download/collection/Server, update-interval=43200, no-alert=0, hidden=0, policy-regex-filter=腾讯云|香港
-𝗣𝗥𝗢𝗫𝗬 = select, 𝗔𝗨𝗧𝗢 ✰, 𝗔𝗨𝗧𝗢 ✢, 𝗦𝘁𝗮𝗻𝗱𝗯𝘆, 𝗛𝗼𝗻𝗴 𝗞𝗼𝗻𝗴, 𝗧𝗮𝗶𝘄𝗮𝗻, 𝗦𝗶𝗻𝗴𝗮𝗽𝗼𝗿𝗲, 𝗝𝗮𝗽𝗮𝗻, 𝗨𝗻𝗶𝘁𝗲𝗱 𝗦𝘁𝗮𝘁𝗲𝘀, 𝗞𝗼𝗿𝗲𝗮, 𝗚𝗲𝗿𝗺𝗮𝗻𝘆, 𝗢𝘁𝗵𝗲𝗿, no-alert=0, hidden=1
-𝗔𝗨𝗧𝗢 ✰ = url-test, include-other-group="𝗛𝗼𝗻𝗴 𝗞𝗼𝗻𝗴, 𝗦𝗶𝗻𝗴𝗮𝗽𝗼𝗿𝗲", policy-regex-filter=IEPL, update-interval=43200, no-alert=0, hidden=1
-𝗔𝗨𝗧𝗢 ✢ = url-test, include-other-group=𝗛𝗼𝗻𝗴 𝗞𝗼𝗻𝗴, policy-regex-filter=^((?!IEPL|BGP|HKT|NTT|Premium|Stream).)*香港((?!IEPL|BGP|HKT|NTT|Premium|Stream).)*$, update-interval=43200, no-alert=0, hidden=1
-𝗛𝗼𝗻𝗴 𝗞𝗼𝗻𝗴 = fallback, policy-path=https://sub.store/download/collection/Dler-Nexitally, policy-regex-filter=香港, update-interval=43200, no-alert=0, hidden=1
-𝗧𝗮𝗶𝘄𝗮𝗻 = fallback, policy-path=https://sub.store/download/collection/Dler-Nexitally, policy-regex-filter=台湾, update-interval=43200, no-alert=0, hidden=1
-𝗦𝗶𝗻𝗴𝗮𝗽𝗼𝗿𝗲 = fallback, policy-path=https://sub.store/download/collection/Dler-Nexitally, policy-regex-filter=新加坡, update-interval=43200, no-alert=0, hidden=1
-𝗝𝗮𝗽𝗮𝗻 = fallback, policy-path=https://sub.store/download/collection/Dler-Nexitally, policy-regex-filter=日本, update-interval=43200, no-alert=0, hidden=1
-𝗚𝗲𝗿𝗺𝗮𝗻𝘆 = fallback, policy-path=https://sub.store/download/collection/Dler-Nexitally, policy-regex-filter=德国, update-interval=43200, no-alert=0, hidden=1
-𝗨𝗻𝗶𝘁𝗲𝗱 𝗦𝘁𝗮𝘁𝗲𝘀 = fallback, policy-path=https://sub.store/download/collection/Dler-Nexitally, policy-regex-filter=美国, update-interval=43200, no-alert=0, hidden=1
-𝗞𝗼𝗿𝗲𝗮 = fallback, policy-path=https://sub.store/download/collection/Dler-Nexitally, policy-regex-filter=韩国, update-interval=43200, no-alert=0, hidden=1
-𝗢𝘁𝗵𝗲𝗿 = select, policy-path=https://sub.store/download/collection/Dler-Nexitally, policy-regex-filter=^((?!香港|台湾|新加坡|日本|韩国|美国|德国).)*$, update-interval=43200, no-alert=0, hidden=1
-𝗣𝗮𝘀𝘀𝗞𝗲𝘆⁺ = select, policy-path=https://sub.store/download/collection/Server, policy-regex-filter=服务器 01, update-interval=43200, no-alert=0, hidden=1
-𝗣𝗮𝘀𝘀𝗞𝗲𝘆 = select, policy-path=https://sub.store/download/collection/Server, policy-regex-filter=服务器 02|服务器 03, update-interval=43200, no-alert=0, hidden=1
-𝗡𝗲𝘁𝗳𝗹𝗶𝘅 = select, include-other-group="𝗦𝗶𝗻𝗴𝗮𝗽𝗼𝗿𝗲,𝗛𝗼𝗻𝗴 𝗞𝗼𝗻𝗴", policy-regex-filter=^((?!HKT|NTT|IPv4|Aliyun|BGP).)*$, update-interval=43200, no-alert=0, hidden=0
-𝗗𝗶𝘀𝗻𝗲𝘆+ = select, include-other-group="𝗦𝗶𝗻𝗴𝗮𝗽𝗼𝗿𝗲,𝗛𝗼𝗻𝗴 𝗞𝗼𝗻𝗴", policy-regex-filter=^((?!HKT|NTT|IPv4|Aliyun|BGP).)*$, update-interval=43200, no-alert=0, hidden=0
-𝗦𝗽𝗲𝗲𝗱𝘁𝗲𝘀𝘁 = select, include-other-group="𝗛𝗼𝗻𝗴 𝗞𝗼𝗻𝗴, 𝗧𝗮𝗶𝘄𝗮𝗻, 𝗦𝗶𝗻𝗴𝗮𝗽𝗼𝗿𝗲, 𝗝𝗮𝗽𝗮𝗻, 𝗨𝗻𝗶𝘁𝗲𝗱 𝗦𝘁𝗮𝘁𝗲𝘀, 𝗞𝗼𝗿𝗲𝗮, 𝗚𝗲𝗿𝗺𝗮𝗻𝘆, 𝗢𝘁𝗵𝗲𝗿, 𝗦𝘁𝗮𝗻𝗱𝗯𝘆, 𝗣𝗮𝘀𝘀𝗞𝗲𝘆⁺, 𝗣𝗮𝘀𝘀𝗞𝗲𝘆", update-interval=43200, no-alert=0, hidden=0
-𝗕𝗶𝗹𝗶𝗕𝗶𝗹𝗶 = select, 𝗗𝗜𝗥𝗘𝗖𝗧, 𝗛𝗼𝗻𝗴 𝗞𝗼𝗻𝗴, 𝗧𝗮𝗶𝘄𝗮𝗻, no-alert=0, hidden=1
-𝗔𝗽𝗽𝗹𝗲 = select, 𝗛𝗬𝗕𝗥𝗜𝗗, 𝗗𝗜𝗥𝗘𝗖𝗧, 𝗣𝗥𝗢𝗫𝗬, 𝗔𝗨𝗧𝗢 ✰, 𝗔𝗨𝗧𝗢 ✢, 𝗦𝘁𝗮𝗻𝗱𝗯𝘆, 𝗛𝗼𝗻𝗴 𝗞𝗼𝗻𝗴, 𝗧𝗮𝗶𝘄𝗮𝗻, 𝗦𝗶𝗻𝗴𝗮𝗽𝗼𝗿𝗲, 𝗝𝗮𝗽𝗮𝗻, 𝗨𝗻𝗶𝘁𝗲𝗱 𝗦𝘁𝗮𝘁𝗲𝘀, 𝗞𝗼𝗿𝗲𝗮, 𝗚𝗲𝗿𝗺𝗮𝗻𝘆, 𝗢𝘁𝗵𝗲𝗿, no-alert=0, hidden=1
-𝗣𝗮𝘆𝗣𝗮𝗹 = select, 𝗛𝗬𝗕𝗥𝗜𝗗, 𝗗𝗜𝗥𝗘𝗖𝗧, 𝗣𝗥𝗢𝗫𝗬, 𝗔𝗨𝗧𝗢 ✰, 𝗔𝗨𝗧𝗢 ✢, 𝗦𝘁𝗮𝗻𝗱𝗯𝘆, 𝗛𝗼𝗻𝗴 𝗞𝗼𝗻𝗴, 𝗧𝗮𝗶𝘄𝗮𝗻, 𝗦𝗶𝗻𝗴𝗮𝗽𝗼𝗿𝗲, 𝗝𝗮𝗽𝗮𝗻, 𝗨𝗻𝗶𝘁𝗲𝗱 𝗦𝘁𝗮𝘁𝗲𝘀, 𝗞𝗼𝗿𝗲𝗮, 𝗚𝗲𝗿𝗺𝗮𝗻𝘆, 𝗢𝘁𝗵𝗲𝗿, no-alert=0, hidden=1
-𝗦𝗽𝗼𝘁𝗶𝗳𝘆 = select, 𝗛𝗬𝗕𝗥𝗜𝗗, 𝗗𝗜𝗥𝗘𝗖𝗧, 𝗣𝗥𝗢𝗫𝗬, 𝗔𝗨𝗧𝗢 ✰, 𝗔𝗨𝗧𝗢 ✢, 𝗦𝘁𝗮𝗻𝗱𝗯𝘆, 𝗛𝗼𝗻𝗴 𝗞𝗼𝗻𝗴, 𝗧𝗮𝗶𝘄𝗮𝗻, 𝗦𝗶𝗻𝗴𝗮𝗽𝗼𝗿𝗲, 𝗝𝗮𝗽𝗮𝗻, 𝗨𝗻𝗶𝘁𝗲𝗱 𝗦𝘁𝗮𝘁𝗲𝘀, 𝗞𝗼𝗿𝗲𝗮, 𝗚𝗲𝗿𝗺𝗮𝗻𝘆, 𝗢𝘁𝗵𝗲𝗿, no-alert=0, hidden=1
-𝗙𝗶𝗻𝗮𝗹 ✈︎ = select, 𝗛𝗬𝗕𝗥𝗜𝗗, 𝗗𝗜𝗥𝗘𝗖𝗧, 𝗣𝗥𝗢𝗫𝗬, 𝗔𝗨𝗧𝗢 ✰, 𝗔𝗨𝗧𝗢 ✢, 𝗦𝘁𝗮𝗻𝗱𝗯𝘆, 𝗛𝗼𝗻𝗴 𝗞𝗼𝗻𝗴, 𝗧𝗮𝗶𝘄𝗮𝗻, 𝗦𝗶𝗻𝗴𝗮𝗽𝗼𝗿𝗲, 𝗝𝗮𝗽𝗮𝗻, 𝗨𝗻𝗶𝘁𝗲𝗱 𝗦𝘁𝗮𝘁𝗲𝘀, 𝗞𝗼𝗿𝗲𝗮, 𝗚𝗲𝗿𝗺𝗮𝗻𝘆, 𝗢𝘁𝗵𝗲𝗿, 𝗣𝗮𝘀𝘀𝗞𝗲𝘆⁺, 𝗣𝗮𝘀𝘀𝗞𝗲𝘆, no-alert=0, hidden=0
+Proxy = select, 🌐Direct, 策略组A，no-alert=0, hidden=0, include-all-proxies=0, include-other-group=自选
+𝐓𝐞𝐥𝐞𝐠𝐫𝐚𝐦 = select, 美国, 新加坡, 台湾, IPV6☁️warp, IPV4☁️warp, no-alert=0, hidden=0, include-all-proxies=0
+𝗦𝘁𝗿𝗲𝗮𝗺𝗶𝗻𝗴 = select, include-other-group="新加坡, 香港", update-interval=43200, no-alert=0, hidden=0, include-all-proxies=0
+YouTube = select, no-alert=0, hidden=0, include-all-proxies=0, include-other-group=自选
+Final = select, 🌐Direct, Proxy, no-alert=0, hidden=0, include-all-proxies=0
+Flower = select, policy-path=https://api.huacloud.xyz/sub?target=surge&ver=4&list=true&emoji=true&tfo=true&udp=true&url=https%3A%2F%2Fapi.flowercloud.xyz%2Fosubscribe.php%3Fsid%3D13937%26token%3DGsUqGZZoZiCL%26sip002%3D1, update-interval=0, no-alert=0, hidden=0, include-all-proxies=0
+自选 = select, 香港, 美国, 日本, 台湾, 新加坡, IPV4☁️warp, IPV6☁️warp, no-alert=0, hidden=1, include-all-proxies=0, include-other-group=自选
+香港 = url-test, policy-regex-filter=(🇭🇰)|(港)|(Hong)|(HK), interval=10800, tolerance=20, evaluate-before-use=true, no-alert=0, hidden=1, include-all-proxies=0, include-other-group=Flower
+# 机场订阅地址为nodelist格式，不是conf文本，有多个机场可以自行添加多个策略组。
+美国 = url-test, policy-regex-filter=(🇺🇸)|(美)|(States)|(US), interval=10800, tolerance=20, evaluate-before-use=true, no-alert=0, hidden=1, include-all-proxies=0, include-other-group=Flower
+日本 = url-test, policy-regex-filter=(🇯🇵)|(日)|(Japan)|(JP), interval=10800, tolerance=20, evaluate-before-use=true, no-alert=0, hidden=1, include-all-proxies=0, include-other-group=Flower
+# 以下策略组使用url-test模式，相关参数请根据自身机场进行配置。如需使用fallback请自行在ui配置。相关正则请阅读surge手册。
+台湾 = url-test, policy-regex-filter=(🇨🇳)|(台)|(Tai)|(TW), interval=10800, tolerance=20, evaluate-before-use=true, no-alert=0, hidden=1, include-all-proxies=0, include-other-group=Flower
+新加坡 = url-test, policy-regex-filter=(🇸🇬)|(新)|(Singapore)|(SG), interval=10800, tolerance=20, evaluate-before-use=true, no-alert=0, hidden=1, include-all-proxies=0, include-other-group=Flower
 
 [Rule]
-# > 规则分流
-# WeChat
-RULE-SET,https://raw.githubusercontent.com/NobyDa/Script/master/Surge/WeChat.list,𝗛𝗬𝗕𝗥𝗜𝗗
+# 国内邮箱
+DOMAIN-SUFFIX,mail.qq.com,🌐Direct
+# 国外邮箱代理（所选策略需要机场节点支持邮件）
+OR,((DOMAIN-SUFFIX,smtp.gmail.com), (DOMAIN-SUFFIX,mail.me.com), (DOMAIN-SUFFIX,mail.icloud.com.cn), (DOMAIN-SUFFIX,imap.gmail.com)),Proxy
+# BT下载相关
+# OR,((PROCESS-NAME,UUBooster), (PROCESS-NAME,aria2c), (PROCESS-NAME,fdm), (PROCESS-NAME,Folx), (PROCESS-NAME,NetTransport), (PROCESS-NAME,Thunder), (PROCESS-NAME,Transmission), (PROCESS-NAME,uTorrent), (PROCESS-NAME,WebTorrent), (PROCESS-NAME,WebTorrent Helper)),🌐Direct
+# 重写高级设置等（神机）
+RULE-SET,https://raw.githubusercontent.com/DivineEngine/Profiles/master/Surge/Ruleset/Unbreak.list,Proxy
+# 去广告隐私劫持保护（神机和毒奶）
+OR,((RULE-SET,https://raw.githubusercontent.com/DivineEngine/Profiles/master/Surge/Ruleset/Guard/Advertising.list), (RULE-SET,https://raw.githubusercontent.com/limbopro/Adblock4limbo/main/Adblock4limbo_surge.list), (RULE-SET,https://raw.githubusercontent.com/DivineEngine/Profiles/master/Surge/Ruleset/Guard/Privacy.list), (RULE-SET,https://raw.githubusercontent.com/DivineEngine/Profiles/master/Surge/Ruleset/Guard/Hijacking.list)),⛔️Reject
+# 国外媒体（神机），如有需要选项可去除注释。
 # Disney+
-RULE-SET,https://raw.githubusercontent.com/DivineEngine/Profiles/master/Surge/Ruleset/StreamingMedia/Video/DisneyPlus.list,𝗗𝗶𝘀𝗻𝗲𝘆+
+RULE-SET,https://raw.githubusercontent.com/DivineEngine/Profiles/master/Surge/Ruleset/StreamingMedia/Video/DisneyPlus.list,𝗦𝘁𝗿𝗲𝗮𝗺𝗶𝗻𝗴
 # Netflix
-RULE-SET,https://raw.githubusercontent.com/DivineEngine/Profiles/master/Surge/Ruleset/StreamingMedia/Video/Netflix.list,𝗡𝗲𝘁𝗳𝗹𝗶𝘅
+RULE-SET,https://raw.githubusercontent.com/DivineEngine/Profiles/master/Surge/Ruleset/StreamingMedia/Video/Netflix.list,𝗦𝘁𝗿𝗲𝗮𝗺𝗶𝗻𝗴
+# YouTube
+RULE-SET,https://raw.githubusercontent.com/DivineEngine/Profiles/master/Surge/Ruleset/StreamingMedia/Video/YouTube.list,YouTube
 # Spotify
-RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Surge/Spotify/Spotify.list,𝗦𝗽𝗼𝘁𝗶𝗳𝘆
-# 规则修正
-RULE-SET,https://raw.githubusercontent.com/DivineEngine/Profiles/master/Surge/Ruleset/Unbreak.list,𝗗𝗜𝗥𝗘𝗖𝗧
-# Speedtest
-RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/release/rule/Surge/Speedtest/Speedtest.list,𝗦𝗽𝗲𝗲𝗱𝘁𝗲𝘀𝘁
-# TikTok
-RULE-SET,https://raw.githubusercontent.com/DivineEngine/Profiles/master/Surge/Ruleset/StreamingMedia/Video/TikTok.list,𝗣𝗥𝗢𝗫𝗬
-# 广告拦截
-RULE-SET,https://raw.githubusercontent.com/DivineEngine/Profiles/master/Surge/Ruleset/Guard/Advertising.list,REJECT-TINYGIF
-# 哔哩哔哩
-RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Surge/BiliBili/BiliBili.list,𝗕𝗶𝗹𝗶𝗕𝗶𝗹𝗶
-# 隐私保护
-RULE-SET,https://raw.githubusercontent.com/DivineEngine/Profiles/master/Surge/Ruleset/Guard/Privacy.list,REJECT-TINYGIF
-# 运营商劫持
-RULE-SET,https://raw.githubusercontent.com/DivineEngine/Profiles/master/Surge/Ruleset/Guard/Hijacking.list,REJECT-TINYGIF
-# PayPal
-RULE-SET,https://raw.githubusercontent.com/DivineEngine/Profiles/master/Surge/Ruleset/Extra/PayPal.list,𝗣𝗮𝘆𝗣𝗮𝗹
-# 国际流媒体
-RULE-SET,https://raw.githubusercontent.com/DivineEngine/Profiles/master/Surge/Ruleset/StreamingMedia/Streaming.list,𝗣𝗥𝗢𝗫𝗬
-# 全球加速
-RULE-SET,https://raw.githubusercontent.com/DivineEngine/Profiles/master/Surge/Ruleset/Global.list,𝗣𝗥𝗢𝗫𝗬
-# TestFlight
-RULE-SET,https://raw.githubusercontent.com/DivineEngine/Profiles/master/Surge/Ruleset/Extra/Apple/TestFlight.list,𝗣𝗥𝗢𝗫𝗬
-# 苹果服务
-RULE-SET,https://raw.githubusercontent.com/DivineEngine/Profiles/master/Surge/Ruleset/Extra/Apple/Apple.list,𝗔𝗽𝗽𝗹𝗲
-# 中国直连
-RULE-SET,https://raw.githubusercontent.com/DivineEngine/Profiles/master/Surge/Ruleset/China.list,𝗗𝗜𝗥𝗘𝗖𝗧
-# Local Area Network 局域网
-RULE-SET,LAN,𝗗𝗜𝗥𝗘𝗖𝗧
-# GeoIP China
-GEOIP,CN,𝗗𝗜𝗥𝗘𝗖𝗧
-# 兜底规则
-FINAL,𝗙𝗶𝗻𝗮𝗹 ✈︎,dns-failed
+# Telegram
+RULE-SET,https://raw.githubusercontent.com/DivineEngine/Profiles/master/Surge/Ruleset/Extra/Telegram/Telegram.list,𝐓𝐞𝐥𝐞𝐠𝐫𝐚𝐦
+# Global 全球加速（神机）
+RULE-SET,https://raw.githubusercontent.com/DivineEngine/Profiles/master/Surge/Ruleset/Global.list,Proxy
+# China 中国直连（神机分流，薯条🍟Asn）
+OR,((RULE-SET,https://raw.githubusercontent.com/DivineEngine/Profiles/master/Surge/Ruleset/China.list), (RULE-SET,LAN), (RULE-SET,https://raw.githubusercontent.com/VirgilClyne/GetSomeFries/main/ruleset/ASN.China.list), (GEOIP,CN)),🌐Direct
+# 最终策略（上述所有分流规则策略匹配不到时走此策略）
+FINAL,Proxy,dns-failed
 
 [Host]
-ip6-localhost = ::1
-ip6-loopback = ::1
-taobao.com = server:223.6.6.6
-*.taobao.com = server:223.6.6.6
-tmall.com = server:223.6.6.6
-*.tmall.com = server:223.6.6.6
-jd.com = server:119.29.29.29
-*.jd.com = server:119.28.28.28
-*.qq.com = server:119.28.28.28
-*.bilibili.com = server:119.29.29.29
-*.tencent.com = server:119.28.28.28
-*.alicdn.com = server:223.5.5.5
-aliyun.com = server:223.5.5.5
-*.aliyun.com = server:223.5.5.5
-weixin.com = server:119.28.28.28
-*.weixin.com = server:119.28.28.28
-hdslb.com = server:119.29.29.29
-163.com = server:119.29.29.29
-*.163.com = server:119.29.29.29
-126.com = server:119.29.29.29
-*.126.com = server:119.29.29.29
-*.126.net = server:119.29.29.29
-*.127.net = server:119.29.29.29
-*.netease.com = server:119.29.29.29
-mi.com = server:119.29.29.29
-*.mi.com = server:119.29.29.29
-xiaomi.com = server:119.29.29.29
-*.xiaomi.com = server:119.29.29.29
-dler.cloud = server:180.76.76.76
-dleris.best = server:180.76.76.76
-routerlogin.net = server:syslib
-_hotspot_.m2m = server:syslib
-router.asus.com = server:syslib
-hotspot.cslwifi.com = server:syslib
-amplifi.lan = server:syslib
-*.lan = server:syslib
+# > Firebase Cloud Messaging
+mtalk.google.com = server:108.177.125.188
+# > Google Dl
+dl.google.com = server:119.29.29.29
+dl.l.google.com = server:119.29.29.29
+update.googleapis.com = server:119.29.29.29
+# > PlayStation
+*.dl.playstation.net = server:119.29.29.29
+# > Router Admin Panel
+amplifi.lan = server:syslib // Ubiquiti Amplifi Router
+router.synology.com = server:syslib // Synology Router
+sila.razer.com = server:syslib // Razer Sila Router
+router.asus.com = server:syslib // Asus Router
+routerlogin.net = server:syslib // Netgear Router
+orbilogin.com = server:syslib // Netgear Obri Router
+www.LinksysSmartWiFi.com = server:syslib // Linksys Router
+LinksysSmartWiFi.com = server:syslib // Linksys Router
+myrouter.local = syslib
+www.miwifi.com = server:syslib // Xiaomi Mi WiFi Router
+miwifi.com = server:syslib // Xiaomi Mi WiFi Router
+mediarouter.home = server:syslib // Huawei Router
+tplogin.cn = server:syslib // TP-Link Router
+tplinklogin.net = server:syslib // TP-Link Router
+melogin.cn = server:syslib // MERCURY Router
+falogin.cn = server:syslib
+
+[Header Rewrite]
+# Block Ads Start
+# 内容
+# Block Ads End
 
 [MITM]
-# > VIF 对原始 TCP 流量进行解密
 tcp-connection = true
-# > CA 证书
-ca-passphrase = BBDFA888
+ca-passphrase = 48257DF6
+ca-p12 = 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
+
+[WireGuard 096643BG]
+private-key = yBzFxeDw+JKPSnJIEOlQp1nXb8aux+AFXJF2wPfYBWw=
+self-ip = 172.16.0.253
+dns-server = 1.1.1.1
+mtu = 1380
+peer = (public-key = bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=, allowed-ips = "0.0.0.0/0, ::0/0", endpoint = 162.159.193.10:2408, keepalive = 45)
+
+[WireGuard C8314824]
+private-key = MICg08o65dBTh2L6hVf5j/MNqWrie+garAPIICGCvXA=
+self-ip = 172.16.0.2
+self-ip-v6 = 2606:4700:110:8083:6145:5fc7:7598:63bc
+prefer-ipv6 = true
+dns-server = 162.159.36.1, 2606:4700:4700::1111
+mtu = 1320
+peer = (public-key = bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=, allowed-ips = "0.0.0.0/0, ::0/0", endpoint = engage.nanocat.me:2408, keepalive = 45)
+
+
