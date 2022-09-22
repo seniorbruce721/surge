@@ -1,12 +1,12 @@
 [General]
 # > 跳过代理
-skip-proxy = 127.0.0.1, 192.168.0.0/16, 10.0.0.0/8, 172.16.0.0/12, 100.64.0.0/10, localhost, *.local, iosapps.itunes.apple.com
+skip-proxy = 192.168.0.0/24, 10.0.0.0/8, 172.16.0.0/12, 127.0.0.1, localhost, *.local
 # > Always Real IP Hosts
 always-real-ip = *.msftconnecttest.com, *.msftncsi.com, *.srv.nintendo.net, *.stun.playstation.net, xbox.*.microsoft.com, *.xboxlive.com, *.logon.battlenet.com.cn, *.logon.battle.net, stun.l.google.com
 # GeoIP 数据库
 geoip-maxmind-url = https://github.com/Hackl0us/GeoIP2-CN/raw/release/Country.mmdb
 # Internet 测试 URL
-internet-test-url = http://aliyun.com/
+internet-test-url = http://taobao.com/
 # 代理测试 URL
 proxy-test-url = http://1.1.1.1/generate_204
 # 测试超时，单位，秒
@@ -18,19 +18,21 @@ doh-server = https://doh.pub/dns-query, https://dns.alidns.com/dns-query
 # 如果配置了 doh-server，则 dns-server 将仅用于测试连接性并解析 Doh URL 中的域名
 dns-server = 223.6.6.6
 # > 包含本地网络请求
-include-local-networks = true
+include-local-networks = false
 ipv6 = false
+allow-wifi-access = false
+show-error-page-for-reject = true
 
 [Proxy]
 # > 别名策略+代理
 𝗗𝗜𝗥𝗘𝗖𝗧 = direct
-IPV6☁️warp = wireguard, section-name=C8314824, test-url=http://1.1.1.1/generatel_204
+IPV6☁️warp = wireguard, section-name=C8314824, underlying-proxy=𝗝𝗮𝗽𝗮𝗻, test-url=http://1.1.1.1/generatel_204
 IPV4☁️warp = wireguard, section-name=096643BG, test-url=http://1.1.1.1/generate_204
 
 [Proxy Group]
 # > 自定义策略
-Flower = select, policy-path=https://api.huacloud.xyz/sub?target=surge&ver=4&list=true&emoji=true&tfo=true&udp=true&url=https%3A%2F%2Fapi.flowercloud.xyz%2Fosubscribe.php%3Fsid%3D13937%26token%3DGsUqGZZoZiCL%26sip002%3D1, update-interval=3600, no-alert=0, hidden=0, include-all-proxies=0, policy-regex-filter=Traffic|Expire
 𝗣𝗥𝗢𝗫𝗬 = select, 𝗔𝗨𝗧𝗢 ✰, 𝗛𝗼𝗻𝗴 𝗞𝗼𝗻𝗴, 𝗧𝗮𝗶𝘄𝗮𝗻, 𝗦𝗶𝗻𝗴𝗮𝗽𝗼𝗿𝗲, 𝗝𝗮𝗽𝗮𝗻, 𝗨𝗻𝗶𝘁𝗲𝗱 𝗦𝘁𝗮𝘁𝗲𝘀, 𝗞𝗼𝗿𝗲𝗮, Outbound, IPV6☁️warp, IPV4☁️warp
+AD Block = select, REJECT
 𝗧𝗲𝗹𝗲𝗴𝗿𝗮𝗺 = select, 𝗧𝗮𝗶𝘄𝗮𝗻, 𝗦𝗶𝗻𝗴𝗮𝗽𝗼𝗿𝗲, 𝗨𝗻𝗶𝘁𝗲𝗱 𝗦𝘁𝗮𝘁𝗲𝘀, IPV6☁️warp, IPV4☁️warp
 𝗦𝘁𝗿𝗲𝗮𝗺𝗶𝗻𝗴 = select, include-other-group="𝗦𝗶𝗻𝗴𝗮𝗽𝗼𝗿𝗲, 𝗛𝗼𝗻𝗴 𝗞𝗼𝗻𝗴, 𝗧𝗮𝗶𝘄𝗮𝗻", update-interval=43200, no-alert=0, hidden=0, include-all-proxies=0
 𝗔𝗨𝗧𝗢 ✰ = url-test, include-other-group="𝗛𝗼𝗻𝗴 𝗞𝗼𝗻𝗴, 𝗦𝗶𝗻𝗴𝗮𝗽𝗼𝗿𝗲", update-interval=43200, no-alert=0, hidden=1, include-all-proxies=0
@@ -41,52 +43,46 @@ Flower = select, policy-path=https://api.huacloud.xyz/sub?target=surge&ver=4&lis
 𝗨𝗻𝗶𝘁𝗲𝗱 𝗦𝘁𝗮𝘁𝗲𝘀 = fallback, policy-regex-filter=美|US|🇺🇸, update-interval=43200, no-alert=0, hidden=1, include-all-proxies=0, include-other-group=Outbound
 𝗞𝗼𝗿𝗲𝗮 = fallback, policy-regex-filter=韩国, update-interval=43200, no-alert=0, hidden=1, include-all-proxies=0, include-other-group=Outbound
 𝗢𝘁𝗵𝗲𝗿 = select, policy-regex-filter=^((?!港|HK|Hong|hk|🇭🇰 |湾|TW|Taiwan|tw |坡|SG|🇸🇬|Singapore|日|JP|Japan|🇯🇵|美|US|🇺🇸 ).)*$, update-interval=43200, no-alert=0, hidden=1, include-all-proxies=0, include-other-group=Outbound
-Outbound = select, update-interval=43200, no-alert=0, hidden=0, include-all-proxies=0, policy-path=https://api.huacloud.xyz/sub?target=surge&ver=4&list=true&emoji=true&tfo=true&udp=true&url=https%3A%2F%2Fapi.flowercloud.xyz%2Fosubscribe.php%3Fsid%3D13937%26token%3DGsUqGZZoZiCL%26sip002%3D1
-# Speedtest
-𝗦𝗽𝗲𝗲𝗱𝘁𝗲𝘀𝘁 = select, include-other-group="𝗛𝗼𝗻𝗴 𝗞𝗼𝗻𝗴, 𝗧𝗮𝗶𝘄𝗮𝗻, 𝗦𝗶𝗻𝗴𝗮𝗽𝗼𝗿𝗲, 𝗝𝗮𝗽𝗮𝗻, 𝗨𝗻𝗶𝘁𝗲𝗱 𝗦𝘁𝗮𝘁𝗲𝘀, 𝗞𝗼𝗿𝗲𝗮, 𝗢𝘁𝗵𝗲𝗿, Outbound", update-interval=43200, no-alert=0, hidden=0, include-all-proxies=0
+Outbound = select, update-interval=43200, no-alert=0, hidden=0, include-all-proxies=0, policy-path=https://api.fuqing.ch/sub?target=surge&ver=4&list=true&emoji=true&tfo=true&udp=true&scv=true&url=https%3A%2F%2Ffuqing.ch%2Fmodules%2Fservers%2Ffuqingsocks%2Fosubscribe.php%3Fsid%3D4187%26token%3D3pVGeeTBX1BJ
 𝗔𝗽𝗽𝗹𝗲 = select, 𝗗𝗜𝗥𝗘𝗖𝗧, 𝗣𝗥𝗢𝗫𝗬, no-alert=0, hidden=0, include-all-proxies=0
-# YouTube
-Experiment = select, policy-regex-filter=实验性, no-alert=0, hidden=0, include-all-proxies=0, include-other-group=Outbound
-
 
 [Rule]
-
-# ################ Local Rule
-DOMAIN-SUFFIX,githubusercontent.com,Global Proxy
-DOMAIN-SUFFIX,github.com,Global Proxy
-DOMAIN-SUFFIX,vercel.app,Global Proxy
+DOMAIN-SUFFIX,githubusercontent.com,𝗣𝗥𝗢𝗫𝗬
+DOMAIN-SUFFIX,github.com,𝗣𝗥𝗢𝗫𝗬
+DOMAIN-SUFFIX,vercel.app,𝗣𝗥𝗢𝗫𝗬
 # ################ AD Block
-RULE-SET,https://github.com/blackmatrix7/ios_rule_script/blob/master/rule/Surge/Advertising/Advertising.list?raw=true,AD Block
+RULE-SET,https://raw.githubusercontent.com/DivineEngine/Profiles/master/Surge/Ruleset/Guard/Advertising.list?raw=true,AD Block
 # ################ Special App
 # > Apple
 RULE-SET,https://github.com/blackmatrix7/ios_rule_script/blob/master/rule/Surge/Apple/Apple.list?raw=true,𝗔𝗽𝗽𝗹𝗲
-# > Speedtest
-RULE-SET,https://github.com/blackmatrix7/ios_rule_script/blob/master/rule/Surge/Speedtest/Speedtest.list?raw=true,𝗦𝗽𝗲𝗲𝗱𝘁𝗲𝘀𝘁
-# ################ > Global Proxy
+RULE-SET,https://raw.githubusercontent.com/LucaLin233/Luca_Conf/main/Surge/Rule/Media.list,𝗦𝘁𝗿𝗲𝗮𝗺𝗶𝗻𝗴
+RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Surge/HBOAsia/HBOAsia.list,𝗦𝘁𝗿𝗲𝗮𝗺𝗶𝗻𝗴
+# > AsianMedia
+RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Surge/AsianMedia/AsianMedia.list,𝗗𝗜𝗥𝗘𝗖𝗧
 # > Google
 RULE-SET,https://github.com/blackmatrix7/ios_rule_script/blob/master/rule/Surge/Google/Google.list?raw=true,𝗣𝗥𝗢𝗫𝗬
-# > Youtube
-RULE-SET,https://github.com/blackmatrix7/ios_rule_script/blob/master/rule/Surge/YouTube/YouTube.list?raw=true,𝗣𝗥𝗢𝗫𝗬
 # > GitHub
 RULE-SET,https://github.com/blackmatrix7/ios_rule_script/blob/master/rule/Surge/GitHub/GitHub.list?raw=true,𝗣𝗥𝗢𝗫𝗬
 # > Telegram
-RULE-SET,https://github.com/VirgilClyne/GetSomeFries/blob/main/ruleset/ASN.Telegram.list?raw=true,𝗧𝗲𝗹𝗲𝗴𝗿𝗮𝗺
+RULE-SET,https://github.com/Blankwonder/surge-list/raw/master/telegram.list,𝗧𝗲𝗹𝗲𝗴𝗿𝗮𝗺
 # ######## > Proxy
 RULE-SET,https://github.com/blackmatrix7/ios_rule_script/blob/master/rule/Surge/Proxy/Proxy.list?raw=true,𝗣𝗥𝗢𝗫𝗬
 # ################ > Global Direct
 # > China ASN
 RULE-SET,https://github.com/VirgilClyne/GetSomeFries/blob/main/ruleset/ASN.China.list?raw=true,𝗗𝗜𝗥𝗘𝗖𝗧
 # ######## > GEOIP CN
-GEOIP,CN,Global Direct
+GEOIP,CN,𝗗𝗜𝗥𝗘𝗖𝗧
 # ######## > LAN
-RULE-SET,LAN,DIRECT
+RULE-SET,LAN,𝗗𝗜𝗥𝗘𝗖𝗧
 # ################ > Final
-FINAL,Final
+FINAL,𝗣𝗥𝗢𝗫𝗬,dns-failed
 
 [MITM]
 skip-server-cert-verify = true
 # 不开启 tcp-connection，Sub-Store 将无法使用
 tcp-connection = true
+ca-passphrase = A23DC948
+ca-p12 = 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
 
 [WireGuard 096643BG]
 private-key = yBzFxeDw+JKPSnJIEOlQp1nXb8aux+AFXJF2wPfYBWw=
@@ -101,4 +97,5 @@ self-ip = 172.16.0.2
 self-ip-v6 = 2606:4700:110:8083:6145:5fc7:7598:63bc
 dns-server = 162.159.36.1, 2606:4700:4700::1111
 mtu = 1320
-peer = (public-key = bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=, allowed-ips = "0.0.0.0/0, ::/0", endpoint = engage.nanocat.me:2408, keepalive = 30)
+peer = (public-key = bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=, allowed-ips = "0.0.0.0/0, ::0/0", endpoint = engage.nanocat.me:2408, keepalive = 30)
+
