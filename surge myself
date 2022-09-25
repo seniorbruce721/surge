@@ -43,7 +43,7 @@ AD Block = select, REJECT
 𝗨𝗻𝗶𝘁𝗲𝗱 𝗦𝘁𝗮𝘁𝗲𝘀 = fallback, policy-regex-filter=美|US|🇺🇸, update-interval=43200, no-alert=0, hidden=1, include-all-proxies=0, include-other-group=Outbound
 𝗞𝗼𝗿𝗲𝗮 = fallback, policy-regex-filter=韩国, update-interval=43200, no-alert=0, hidden=1, include-all-proxies=0, include-other-group=Outbound
 𝗢𝘁𝗵𝗲𝗿 = select, policy-regex-filter=^((?!港|HK|Hong|hk|🇭🇰 |湾|TW|Taiwan|tw |坡|SG|🇸🇬|Singapore|日|JP|Japan|🇯🇵|美|US|🇺🇸 ).)*$, update-interval=43200, no-alert=0, hidden=1, include-all-proxies=0, include-other-group=Outbound
-Outbound = select, update-interval=43200, no-alert=0, hidden=0, include-all-proxies=0, policy-path=https://api.fuqing.ch/sub?target=surge&ver=4&list=true&emoji=true&tfo=true&udp=true&scv=true&url=https%3A%2F%2Ffuqing.ch%2Fmodules%2Fservers%2Ffuqingsocks%2Fosubscribe.php%3Fsid%3D4187%26token%3D3pVGeeTBX1BJ
+Outbound = select, update-interval=43200, no-alert=0, hidden=0, include-all-proxies=0, policy-path=地址
 𝗔𝗽𝗽𝗹𝗲 = select, 𝗗𝗜𝗥𝗘𝗖𝗧, 𝗣𝗥𝗢𝗫𝗬, no-alert=0, hidden=0, include-all-proxies=0
 
 [Rule]
