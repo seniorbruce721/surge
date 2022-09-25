@@ -24,7 +24,7 @@ Telegram = select, Singapore, United States, IPV6☁️warp, IPV4☁️warp, no-
 Streaming = select, include-other-group="Singapore, Hong Kong, Taiwan", update-interval=43200, no-alert=0, hidden=0, include-all-proxies=0
 # 国内流媒体服
 CNTV = select, Direct, Hong Kong, Taiwan
-# Tital
+# Tial
 Tidal = select, Direct, Proxy, AUTO ✰, no-alert=0, hidden=0, include-all-proxies=0
 # Speedtest
 Speedtest = select, include-other-group="Hong Kong, Taiwan, Singapore, Japan, United States, Other", update-interval=43200, no-alert=0, hidden=0, include-all-proxies=0
