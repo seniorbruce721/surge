@@ -74,9 +74,9 @@ RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/release/
 # TestFlight
 RULE-SET,https://raw.githubusercontent.com/DivineEngine/Profiles/master/Surge/Ruleset/Extra/Apple/TestFlight.list,Proxy
 # Apple
-DOMAIN-SUFFIX,store.apple.com,𝗗𝗜𝗥𝗘𝗖𝗧
-DOMAIN,xp.apple.com,𝗣𝗥𝗢𝗫𝗬 // iOS & macOS System Upgrade
-RULE-SET,SYSTEM,𝗗𝗜𝗥𝗘𝗖𝗧
+DOMAIN-SUFFIX,store.apple.com,Direct
+DOMAIN,xp.apple.com,Proxy // iOS & macOS System Upgrade
+RULE-SET,SYSTEM,Direct
 RULE-SET,https://github.com/Blankwonder/surge-list/raw/master/apple.list,Proxy
 # > Proxy
 RULE-SET,https://github.com/Blankwonder/surge-list/raw/master/blocked.list,Proxy
