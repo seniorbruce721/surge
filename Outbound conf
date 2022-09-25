@@ -75,7 +75,7 @@ hide-udp = 0
 🌑Proxy = select, 🇭🇰 Hong Kong, 🇨🇳 Taiwan, 🇸🇬 Singapore, 🇯🇵 Japan, 🇺🇸 America, 『WARP』★★★
 🎞Streaming = select, 🇭🇰 Hong Kong, 🇨🇳 Taiwan, 🇸🇬 Singapore, 🇯🇵 Japan, 🇺🇸 America, 🦆DuckDuckGo, 『WARP』★★★, no-alert=0, hidden=0, include-all-proxies=0
 🎞StreamingSE = select, 🌐Direct
-🦆DuckDuckGo = select, policy-path=https://gist.githubusercontent.com/seniorbruce721/46f4030b96f82f87453bd1512ee1e36b/raw/byg, update-interval=86400, no-alert=0, hidden=0, include-all-proxies=0
+🦆DuckDuckGo = select, policy-path=地址, update-interval=86400, no-alert=0, hidden=0, include-all-proxies=0
 🧭Final = select, 🌑Proxy, 🌐Direct, no-alert=0, hidden=0
 🛡Guard = select, ⛔️Reject, 🌐Direct
 🇭🇰 Hong Kong = url-test, update-interval=86400, policy-regex-filter=(?=.*(港|HK|(?i)Hong))^((?!(台|日|韩|新|美)).)*$, interval=3600, tolerance=100, no-alert=0, hidden=0, include-all-proxies=0, include-other-group=🦆DuckDuckGo
