@@ -81,7 +81,7 @@ Proxy = select, 🌐Direct, 策略组A，no-alert=0, hidden=0, include-all-proxi
 𝗦𝘁𝗿𝗲𝗮𝗺𝗶𝗻𝗴 = select, include-other-group="新加坡, 香港", update-interval=43200, no-alert=0, hidden=0, include-all-proxies=0
 YouTube = select, no-alert=0, hidden=0, include-all-proxies=0, include-other-group=自选
 Final = select, 🌐Direct, Proxy, no-alert=0, hidden=0, include-all-proxies=0
-Flower = select, policy-path=https://api.huacloud.xyz/sub?target=surge&ver=4&list=true&emoji=true&tfo=true&udp=true&url=https%3A%2F%2Fapi.flowercloud.xyz%2Fosubscribe.php%3Fsid%3D13937%26token%3DGsUqGZZoZiCL%26sip002%3D1, update-interval=0, no-alert=0, hidden=0, include-all-proxies=0
+Flower = select, policy-path=, update-interval=0, no-alert=0, hidden=0, include-all-proxies=0
 自选 = select, 香港, 美国, 日本, 台湾, 新加坡, IPV4☁️warp, IPV6☁️warp, no-alert=0, hidden=1, include-all-proxies=0, include-other-group=自选
 香港 = url-test, policy-regex-filter=(🇭🇰)|(港)|(Hong)|(HK), interval=10800, tolerance=20, evaluate-before-use=true, no-alert=0, hidden=1, include-all-proxies=0, include-other-group=Flower
 # 机场订阅地址为nodelist格式，不是conf文本，有多个机场可以自行添加多个策略组。
