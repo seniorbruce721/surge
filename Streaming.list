@@ -89,3 +89,7 @@ DOMAIN-SUFFIX,youtu.be
 DOMAIN-SUFFIX,googlevideo.com
 DOMAIN,youtubei.googleapis.com
 DOMAIN-KEYWORD,youtube
+
+# > Now E
+DOMAIN-SUFFIX,nowe.com
+DOMAIN-SUFFIX,nowestatic.com
