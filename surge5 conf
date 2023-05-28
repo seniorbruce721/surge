@@ -72,6 +72,16 @@ udp-priority = true
 # > 切换网络后不再重新进行 VPN 配置
 fast-switch = 1
 
+[Replica]
+# > 隐藏 Apple 请求
+hide-apple-request = 0
+# > 隐藏崩溃追踪器请求
+hide-crash-reporter-request = 1
+# > 隐藏 UDP 会话
+hide-udp = 0
+# > 关键词过滤器
+keyword-filter-type = false
+
 [Proxy]
 Direct = direct
 IPV6☁️warp = wireguard, section-name=C8314824, underlying-proxy=Japan, test-url=http://cp.cloudflare.com/generate_204
